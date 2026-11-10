@@ -61,26 +61,32 @@ def stylesheet():
 @app.route("/script.js")
 def javascript():
     return send_file(BASE_DIR / "script.js")
+
+
+# Проект: Dashboard
 @app.route("/projects/dashboard")
 def dashboard():
     return send_file(
         BASE_DIR / "projects" / "dashboard" / "index.html"
     )
+
+
+# Проект: Telegram Bot
 @app.route("/projects/telegram-bot")
 def telegram_bot():
     return send_file(
         BASE_DIR / "projects" / "tg bot" / "index.html"
     )
-    @app.route("/projects/business-website")
+
+
+# Проект: Business Website
+@app.route("/projects/business-website")
 def business_website():
     return send_file(
         BASE_DIR / "projects" / "business-website" / "index.html"
     )
-    @app.route("/projects/business-website")
-def business_website():
-    return send_file(
-        BASE_DIR / "projects" / "business-website" / "index.html"
-    )
+
+
 # Отправка заявки в Telegram
 @app.route("/api/order", methods=["POST"])
 def create_order():
