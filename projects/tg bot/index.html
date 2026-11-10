@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXORA — Telegram Bot</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#090b12;color:#f5f6fa;font-family:Arial,sans-serif;min-height:100vh;padding:35px 20px}
+.container{max-width:1050px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:55px}
+.logo{font-size:23px;font-weight:800;letter-spacing:2px}
+.logo span{color:#9878ff}
+.tag{color:#9878ff;font-size:12px;border:1px solid #423568;padding:8px 12px;border-radius:20px}
+.hero{margin-bottom:35px}
+h1{font-size:42px;margin-bottom:14px}
+p{color:#9299ad;line-height:1.6}
+.content{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.panel{background:#111522;border:1px solid #252b3d;border-radius:16px;padding:25px}
+h2{font-size:18px;margin-bottom:22px}
+.phone{background:#17212b;border-radius:14px;overflow:hidden;max-width:390px;margin:auto}
+.phone-head{background:#202d3b;padding:16px;display:flex;gap:12px;align-items:center}
+.avatar{width:40px;height:40px;border-radius:50%;background:#8065df;display:grid;place-items:center;font-weight:bold}
+.phone-head small{display:block;color:#a8b4c2;margin-top:4px}
+.chat{padding:18px;min-height:310px}
+.message{background:#263746;padding:14px;border-radius:12px;margin-bottom:12px;font-size:13px;line-height:1.6}
+.message strong{color:#b8a5ff}
+.buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:13px}
+.buttons button{border:0;border-radius:8px;padding:11px;background:#354b60;color:white;cursor:pointer}
+.buttons button:hover{background:#526b87}
+.result{margin-top:15px;padding:12px;background:#202d3b;border-radius:9px;color:#d5caff;font-size:13px;min-height:43px}
+.features{display:grid;gap:15px}
+.feature{padding:16px;background:#191f2e;border-radius:10px}
+.feature strong{display:block;margin-bottom:6px}
+.feature span{color:#9299ad;font-size:13px}
+.note{margin-top:25px;text-align:center;font-size:12px;color:#737d91}
+@media(max-width:750px){.content{grid-template-columns:1fr}h1{font-size:32px}header{margin-bottom:40px}}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+<div class="logo">NEXORA<span>.</span></div>
+<div class="tag">TELEGRAM BOT DEMO</div>
+</header>
+
+<section class="hero">
+<h1>Telegram Bot</h1>
+<p>Интерактивная демонстрация возможностей Telegram-ботов от NEXORA STUDIO.</p>
+</section>
+
+<div class="content">
+<section class="panel">
+<h2>Предпросмотр бота</h2>
+<div class="phone">
+<div class="phone-head">
+<div class="avatar">N</div>
+<div><strong>NEXORA Assistant</strong><small>бот · онлайн</small></div>
+</div>
+<div class="chat">
+<div class="message">
+<strong>NEXORA Assistant</strong><br>
+Привет! Я демонстрационный бот. Выбери действие ниже.
+</div>
+<div class="buttons">
+<button onclick="show('Главное меню открыто')">Главное меню</button>
+<button onclick="show('Доступны тарифы: Basic, Pro и Premium')">Тарифы</button>
+<button onclick="show('Техническая поддержка: support@example.com')">Поддержка</button>
+<button onclick="show('Демонстрационный профиль пользователя')">Профиль</button>
+</div>
+<div class="result" id="result">Ожидаю команду...</div>
+</div>
+</div>
+</section>
+
+<section class="panel">
+<h2>Возможности разработки</h2>
+<div class="features">
+<div class="feature"><strong>⚡ Автоматизация</strong><span>Автоматические ответы и обработка команд.</span></div>
+<div class="feature"><strong>💳 Подписки</strong><span>Демонстрация тарифов и управления подписками.</span></div>
+<div class="feature"><strong>🛠 Админ-панель</strong><span>Управление пользователями и настройками.</span></div>
+<div class="feature"><strong>🗄 База данных</strong><span>Хранение информации и истории пользователей.</span></div>
+</div>
+</section>
+</div>
+
+<div class="note">NEXORA STUDIO · DEMONSTRATION PROJECT · NOT A REAL TELEGRAM BOT</div>
+</div>
+
+<script>
+function show(message){
+document.getElementById("result").textContent=message;
+}
+</script>
+</body>
+</html>
