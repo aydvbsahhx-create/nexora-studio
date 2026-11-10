@@ -6,19 +6,24 @@ import requests
 
 from pathlib import Path
 from collections import defaultdict, deque
-from flask import Flask, request, jsonify
-from flask_cors import CORS
+from flask import Flask, request, jsonify, send_file
 from dotenv import load_dotenv
 
-load_dotenv(dotenv_path=Path(__file__).with_name(".env"))
+# Пути проекта
+BASE_DIR = Path(__file__).resolve().parent.parent
+BACKEND_DIR = Path(__file__).resolve().parent
+
+# Загрузка секретных переменных
+load_dotenv(dotenv_path=BACKEND_DIR / ".env")
 
 app = Flask(__name__)
-CORS(app)
 
 BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 
-TELEGRAM_URL = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+TELEGRAM_URL = (
+    f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+)
 
 # Ограничение частоты заявок
 request_history = defaultdict(deque)
@@ -40,8 +45,28 @@ def is_rate_limited(ip):
     return False
 
 
+# Главная страница
+@app.route("/")
+def home():
+    return send_file(BASE_DIR / "index.html")
+
+
+# CSS
+@app.route("/style.css")
+def stylesheet():
+    return send_file(BASE_DIR / "style.css")
+
+
+# JavaScript
+@app.route("/script.js")
+def javascript():
+    return send_file(BASE_DIR / "script.js")
+
+
+# Отправка заявки в Telegram
 @app.route("/api/order", methods=["POST"])
 def create_order():
+
     if not BOT_TOKEN or not CHAT_ID:
         return jsonify({
             "success": False,
@@ -50,7 +75,7 @@ def create_order():
 
     data = request.get_json(silent=True) or {}
 
-    # Honeypot: поле должно оставаться пустым
+    # Honeypot
     if data.get("website"):
         return jsonify({"success": True}), 200
 
@@ -124,7 +149,8 @@ def create_order():
         }), 502
 
 
-@app.route("/api/health", methods=["GET"])
+# Проверка работы сервера
+@app.route("/api/health")
 def health():
     return jsonify({"status": "ok"})
 
