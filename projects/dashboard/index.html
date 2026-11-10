@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NEXORA — Analytics Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #090b12;
+      color: #f5f6fa;
+      font-family: Inter, Arial, sans-serif;
+      min-height: 100vh;
+    }
+
+    .layout { display: flex; min-height: 100vh; }
+
+    aside {
+      width: 245px;
+      background: #0e111b;
+      border-right: 1px solid #202536;
+      padding: 30px 20px;
+    }
+
+    .logo { font-size: 23px; font-weight: 800; letter-spacing: 2px; }
+    .logo span { color: #8b6cff; }
+
+    .nav-title {
+      color: #777f94;
+      font-size: 11px;
+      margin: 42px 0 15px;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-item {
+      padding: 13px;
+      border-radius: 9px;
+      color: #a6adc0;
+      margin-bottom: 7px;
+      font-size: 14px;
+    }
+
+    .nav-item.active {
+      background: #201b3b;
+      color: #b6a4ff;
+    }
+
+    main { flex: 1; padding: 35px; min-width: 0; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 35px;
+    }
+
+    h1 { font-size: 27px; }
+    .subtitle { color: #858da2; font-size: 13px; margin-top: 8px; }
+
+    .profile {
+      background: #171b29;
+      padding: 11px 16px;
+      border-radius: 10px;
+      font-size: 13px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 17px;
+      margin-bottom: 22px;
+    }
+
+    .card, .panel {
+      background: #111522;
+      border: 1px solid #22283a;
+      border-radius: 14px;
+      padding: 22px;
+    }
+
+    .card-label { color: #8991a7; font-size: 13px; }
+    .card-value { font-size: 29px; font-weight: 750; margin: 15px 0 9px; }
+    .change { color: #5cdaa2; font-size: 12px; }
+
+    .content {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr;
+      gap: 18px;
+    }
+
+    .panel h2 { font-size: 16px; margin-bottom: 23px; }
+    .chart-wrap { height: 270px; position: relative; }
+
+    .activity {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 16px 0;
+      border-bottom: 1px solid #252b3b;
+      font-size: 13px;
+    }
+
+    .activity:last-child { border: 0; }
+    .activity small { display: block; color: #858da2; margin-top: 5px; }
+    .positive { color: #5cdaa2; }
+    .negative { color: #ff7777; }
+
+    .bottom {
+      margin-top: 20px;
+      color: #717b91;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    @media(max-width: 1000px) {
+      .cards { grid-template-columns: repeat(2, 1fr); }
+      .content { grid-template-columns: 1fr; }
+    }
+
+    @media(max-width: 650px) {
+      aside { display: none; }
+      main { padding: 20px 14px; }
+      header { align-items: flex-start; flex-direction: column; }
+      h1 { font-size: 23px; }
+      .cards { gap: 10px; }
+      .card { padding: 15px; }
+      .card-value { font-size: 23px; }
+      .card-label { font-size: 11px; }
+    }
+  </style>
+</head>
+<body>
+<div class="layout">
+
+  <aside>
+    <div class="logo">NEXORA<span>.</span></div>
+    <div class="nav-title">WORKSPACE</div>
+    <div class="nav-item active">◈ Обзор</div>
+    <div class="nav-item">▤ Аналитика</div>
+    <div class="nav-item">◷ Активность</div>
+    <div class="nav-item">⚙ Настройки</div>
+  </aside>
+
+  <main>
+    <header>
+      <div>
+        <h1>Dashboard Overview</h1>
+        <div class="subtitle">Добро пожаловать в панель аналитики NEXORA</div>
+      </div>
+      <div class="profile">● Demo Account</div>
+    </header>
+
+    <section class="cards">
+      <div class="card">
+        <div class="card-label">Общий доход</div>
+        <div class="card-value">₽248 500</div>
+        <div class="change">↗ +12.8% за месяц</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Пользователи</div>
+        <div class="card-value">8 429</div>
+        <div class="change">↗ +8.2% за месяц</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Заказы</div>
+        <div class="card-value">1 284</div>
+        <div class="change">↗ +18.4% за месяц</div>
+      </div>
+      <div class="card">
+        <div class="card-label">Конверсия</div>
+        <div class="card-value">4.86%</div>
+        <div class="change">↗ +2.1% за месяц</div>
+      </div>
+    </section>
+
+    <section class="content">
+      <div class="panel">
+        <h2>Динамика дохода</h2>
+        <div class="chart-wrap">
+          <canvas id="incomeChart"></canvas>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h2>Последняя активность</h2>
+        <div class="activity">
+          <div>Новый заказ<small>Заказ #1024</small></div>
+          <span class="positive">+₽4 500</span>
+        </div>
+        <div class="activity">
+          <div>Новый пользователь<small>Регистрация</small></div>
+          <span class="positive">+1</span>
+        </div>
+        <div class="activity">
+          <div>Возврат средств<small>Заказ #1021</small></div>
+          <span class="negative">−₽1 200</span>
+        </div>
+        <div class="activity">
+          <div>Новый заказ<small>Заказ #1020</small></div>
+          <span class="positive">+₽2 800</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="bottom">
+      NEXORA STUDIO · DEMONSTRATION PROJECT · SAMPLE DATA
+    </div>
+  </main>
+</div>
+
+<script>
+  const ctx = document.getElementById("incomeChart");
+
+  new Chart(ctx, {
+    type: "line",
+    data: {
+      labels: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл"],
+      datasets: [{
+        label: "Доход",
+        data: [12000, 18000, 15000, 27000, 23000, 35000, 42000],
+        borderColor: "#9878ff",
+        backgroundColor: "rgba(152,120,255,0.12)",
+        fill: true,
+        tension: 0.4,
+        pointRadius: 3
+      }]
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false }
+      },
+      scales: {
+        x: {
+          grid: { display: false },
+          ticks: { color: "#8991a7" }
+        },
+        y: {
+          grid: { color: "#252b3b" },
+          ticks: {
+            color: "#8991a7",
+            callback: value => "₽" + value / 1000 + "k"
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

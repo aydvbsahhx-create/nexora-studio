@@ -61,7 +61,11 @@ def stylesheet():
 @app.route("/script.js")
 def javascript():
     return send_file(BASE_DIR / "script.js")
-
+@app.route("/projects/dashboard")
+def dashboard():
+    return send_file(
+        BASE_DIR / "projects" / "dashboard" / "index.html"
+    )
 
 # Отправка заявки в Telegram
 @app.route("/api/order", methods=["POST"])
