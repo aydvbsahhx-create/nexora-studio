@@ -71,6 +71,11 @@ def telegram_bot():
     return send_file(
         BASE_DIR / "projects" / "tg bot" / "index.html"
     )
+    @app.route("/projects/business-website")
+def business_website():
+    return send_file(
+        BASE_DIR / "projects" / "business-website" / "index.html"
+    )
 # Отправка заявки в Telegram
 @app.route("/api/order", methods=["POST"])
 def create_order():
