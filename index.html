@@ -119,6 +119,88 @@
         margin: 12px 14px 16px;
       }
     }
+
+    /* NEXORA STUDIO: process, benefits and direct contact */
+    .nexora-process-section { padding-top: 55px; }
+    .nexora-process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 34px;
+    }
+    .nexora-process-card {
+      min-height: 190px;
+      padding: 24px;
+      border: 1px solid rgba(170, 120, 255, .18);
+      border-radius: 18px;
+      background: linear-gradient(145deg, rgba(255,255,255,.045), rgba(125,70,210,.045));
+    }
+    .nexora-process-card > span {
+      display: inline-flex;
+      margin-bottom: 25px;
+      color: #b77aff;
+      font: 700 13px "Space Grotesk", sans-serif;
+      letter-spacing: .12em;
+    }
+    .nexora-process-card h3, .nexora-benefits-grid h3 {
+      margin: 0 0 10px;
+      font-size: 17px;
+    }
+    .nexora-process-card p, .nexora-benefits-grid p {
+      margin: 0;
+      color: rgba(235,230,245,.68);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .nexora-benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 32px;
+    }
+    .nexora-benefits-grid article {
+      display: flex;
+      gap: 16px;
+      padding: 22px;
+      border: 1px solid rgba(170, 120, 255, .16);
+      border-radius: 16px;
+      background: rgba(255,255,255,.025);
+    }
+    .nexora-benefits-grid article > span {
+      color: #bd83ff;
+      font-size: 25px;
+      line-height: 1;
+    }
+    .nexora-telegram-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 4px 0 22px;
+      padding: 12px 16px;
+      border: 1px solid rgba(155,75,255,.38);
+      border-radius: 12px;
+      color: #eee7ff;
+      background: rgba(126,49,230,.10);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+    .nexora-telegram-link span { color: #bd75ff; font-size: 18px; }
+    .nexora-telegram-link:hover {
+      transform: translateY(-2px);
+      background: rgba(126,49,230,.2);
+      border-color: rgba(180,110,255,.8);
+    }
+    @media (max-width: 900px) {
+      .nexora-process-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    }
+    @media (max-width: 600px) {
+      .nexora-process-grid, .nexora-benefits-grid { grid-template-columns: 1fr; }
+      .nexora-process-card { min-height: auto; }
+      .nexora-process-card > span { margin-bottom: 16px; }
+    }
+
   </style>
 
 </head>
@@ -137,8 +219,10 @@
     <nav class="nav" id="nav">
       <a href="#home">Главная</a>
       <a href="#services">Услуги</a>
+      <a href="#process">Этапы</a>
       <a href="#projects">Проекты</a>
       <a href="#prices">Цены</a>
+      <a href="https://t.me/Nexor_4" target="_blank" rel="noopener">Telegram ↗</a>
       <a href="#contact" class="nav-button">Обсудить проект ↗</a>
     </nav>
   </header>
@@ -191,6 +275,50 @@
       <div><strong>01</strong><span>Индивидуальный подход</span></div>
       <div><strong>02</strong><span>Современные технологии</span></div>
       <div><strong>03</strong><span>Продуманная реализация</span></div>
+    </section>
+
+
+    <section class="section nexora-process-section" id="process">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">HOW WE WORK</div>
+          <h2>От идеи до <span>запуска.</span></h2>
+        </div>
+        <p>Понятный процесс, прозрачные этапы и связь на каждом шаге.</p>
+      </div>
+      <div class="nexora-process-grid">
+        <article class="nexora-process-card">
+          <span>01</span><h3>Знакомство</h3>
+          <p>Обсуждаем вашу задачу, цели и желаемый результат.</p>
+        </article>
+        <article class="nexora-process-card">
+          <span>02</span><h3>План и стоимость</h3>
+          <p>Согласовываем функциональность, сроки и итоговую цену до старта.</p>
+        </article>
+        <article class="nexora-process-card">
+          <span>03</span><h3>Разработка</h3>
+          <p>Создаём продукт и показываем промежуточный результат.</p>
+        </article>
+        <article class="nexora-process-card">
+          <span>04</span><h3>Проверка и запуск</h3>
+          <p>Тестируем готовое решение и передаём вам результат.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section nexora-benefits-section">
+      <div class="section-heading">
+        <div>
+          <div class="eyebrow">WHY NEXORA</div>
+          <h2>Внимание к <span>деталям.</span></h2>
+        </div>
+        <p>Не просто красивый экран — решение, которое удобно использовать.</p>
+      </div>
+      <div class="nexora-benefits-grid">
+        <article><span>✳</span><div><h3>Индивидуально</h3><p>Подбираем структуру и функции под конкретную задачу.</p></div></article>
+        <article><span>◈</span><div><h3>Современно</h3><p>Актуальный интерфейс и адаптация под смартфоны и компьютеры.</p></div></article>
+        <article><span>⌘</span><div><h3>На связи</h3><p>Согласовываем важные решения и не пропадаем в процессе работы.</p></div></article>
+      </div>
     </section>
 
     <section class="section" id="services">
@@ -361,6 +489,10 @@
       Расскажите, что хотите создать. Обсудим задачу
       и подберём подходящее решение.
     </p>
+
+    <a class="nexora-telegram-link" href="https://t.me/Nexor_4" target="_blank" rel="noopener">
+      Написать напрямую в Telegram <span>↗</span>
+    </a>
 
     <form class="contact-form" id="contactForm">
         <div class="honeypot-field" aria-hidden="true">
