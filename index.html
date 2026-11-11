@@ -201,6 +201,144 @@
       .nexora-process-card > span { margin-bottom: 16px; }
     }
 
+
+
+    /* Impeccable-inspired refinement: clearer hierarchy, quieter surfaces, less decoration */
+    :root {
+      --bg: #0b0c12;
+      --bg-secondary: #11131c;
+      --card: #12151f;
+      --border: rgba(224, 229, 242, .12);
+      --text: #f2f4f8;
+      --muted: #a5adbd;
+      --purple: #9a83df;
+      --blue: #83a9c7;
+      --gradient: linear-gradient(110deg, #a18bdc, #9bb5cb);
+    }
+
+    html { scroll-padding-top: 88px; }
+    body { background: var(--bg); font-family: "DM Sans", Arial, sans-serif; }
+    body::before { display: none; }
+    body::after { display: none; }
+    .glow { display: none !important; }
+
+    .section { padding-top: 96px; }
+    .hero { padding-top: 82px; padding-bottom: 70px; gap: 64px; }
+    .hero h1, .section-heading h2, .contact-box h2 {
+      text-wrap: balance;
+      letter-spacing: -.045em;
+    }
+    .hero h1 { max-width: 640px; font-size: clamp(40px, 5vw, 66px); line-height: 1.06; }
+    .hero h1 span, .section-heading h2 span, .contact-box h2 span {
+      color: #b7a6e7;
+      background: none;
+      -webkit-text-fill-color: currentColor;
+    }
+    .hero-description, .section-heading p, .service-card p, .price-card p,
+    .contact-box p, .nexora-process-card p, .nexora-benefits-grid p {
+      color: #aeb6c5;
+      text-wrap: pretty;
+    }
+    .eyebrow { color: #aeb6c5; letter-spacing: .14em; }
+    .status-dot { animation: none; box-shadow: none; }
+    .hero-note .status-dot { display: none; }
+
+    .button { border-radius: 8px; min-height: 48px; transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .button:hover { transform: none; }
+    .button.primary { background: #7965b5; box-shadow: none; }
+    .button.primary:hover { background: #8975c5; box-shadow: none; }
+    .button.secondary { background: transparent; border-color: rgba(224,229,242,.2); }
+    .button.secondary:hover { border-color: #a18bdc; box-shadow: none; }
+
+    .visual-card { box-shadow: 0 22px 60px rgba(0,0,0,.28); }
+    .hero-visual::after, .floating-tag { box-shadow: none !important; }
+    .floating-tag { border-color: rgba(224,229,242,.15); background: #151824; color: #c5cada; }
+    .nexora-particles { display: none !important; }
+    .core-letter { text-shadow: none !important; }
+
+    .stats { gap: 0; border-block: 1px solid var(--border); }
+    .stats div { border: 0; border-radius: 0; background: transparent; padding: 22px 20px; }
+    .stats div + div { border-left: 1px solid var(--border); }
+    .stats strong { color: #b7a6e7; font: 600 22px "Space Grotesk", sans-serif; }
+    .stats span { font-size: 13px; color: #c0c6d2; }
+
+    .section-heading { align-items: end; margin-bottom: 30px; }
+    .section-heading h2 { font-size: clamp(30px, 3.6vw, 43px); }
+    .service-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 28px; border-top: 1px solid var(--border); }
+    .service-card {
+      min-height: 0; padding: 27px 4px 30px; border: 0; border-bottom: 1px solid var(--border);
+      border-radius: 0; background: transparent; transition: border-color .2s ease;
+    }
+    .service-card::before { display: none; }
+    .service-card:hover { transform: none; border-color: #8f7acb; box-shadow: none; }
+    .service-icon {
+      width: auto; height: auto; display: inline; margin: 0 10px 0 0; border: 0;
+      border-radius: 0; background: none; color: #b7a6e7; font-size: 17px;
+    }
+    .service-number { color: #9ea7b8; letter-spacing: .12em; }
+    .service-card h3 { margin-top: 17px; font-size: 20px; letter-spacing: -.02em; }
+    .service-card p { max-width: 42ch; margin-top: 9px; font-size: 14px; line-height: 1.7; }
+    .service-card a { margin-top: 16px; color: #c0b1e8; font-size: 13px; }
+
+    .nexora-process-grid { gap: 0 24px; border-top: 1px solid var(--border); }
+    .nexora-process-card {
+      min-height: 0; padding: 24px 2px 26px; border: 0; border-bottom: 1px solid var(--border);
+      border-radius: 0; background: transparent;
+    }
+    .nexora-process-card > span { color: #b7a6e7; margin-bottom: 18px; }
+    .nexora-process-card h3, .nexora-benefits-grid h3 { font-size: 18px; }
+    .nexora-process-card p, .nexora-benefits-grid p { font-size: 14px; }
+    .nexora-benefits-grid { grid-template-columns: 1fr; gap: 0; border-top: 1px solid var(--border); }
+    .nexora-benefits-grid article {
+      padding: 20px 2px; border: 0; border-bottom: 1px solid var(--border);
+      border-radius: 0; background: transparent; gap: 18px;
+    }
+    .nexora-benefits-grid article > span { color: #b7a6e7; font-size: 18px; }
+
+    .project-grid { gap: 18px; }
+    .project-card, .nexora-project-card { border-radius: 12px; border-color: var(--border); background: #11141d; box-shadow: none; }
+    .project-card:hover { transform: translateY(-3px); border-color: rgba(183,166,231,.5); box-shadow: none; }
+    .nexora-project-cta, .nexora-telegram-link { border-radius: 8px; border-color: rgba(183,166,231,.3); background: rgba(183,166,231,.07); }
+    .nexora-project-cta:hover, .nexora-telegram-link:hover { transform: none; background: rgba(183,166,231,.13); border-color: rgba(183,166,231,.55); }
+
+    .price-card { border-radius: 12px; background: #11141d; box-shadow: none; }
+    .price-card:hover { transform: translateY(-3px); border-color: rgba(183,166,231,.5); }
+    .price-card.featured { border-color: rgba(183,166,231,.55); background: #151722; box-shadow: none; }
+    .popular { border-radius: 5px; background: rgba(183,166,231,.14); color: #d5cbed; }
+    .price { color: #f2f4f8; }
+
+    .contact-box {
+      border-radius: 14px; border-color: var(--border); text-align: left;
+      background: #11141d; padding: 58px clamp(24px, 6vw, 72px);
+    }
+    .contact-box::before, .contact-box::after { display: none; }
+    .contact-box p { margin-left: 0; margin-right: 0; }
+    .nexora-telegram-link { margin-top: 8px; }
+    .footer { color: #aeb6c5; }
+
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid #b7a6e7; outline-offset: 3px;
+    }
+    @media (max-width: 900px) {
+      .hero { gap: 32px; }
+      .service-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .section { padding-top: 72px; }
+      .hero { padding-top: 58px; gap: 30px; }
+      .hero h1 { letter-spacing: -.04em; }
+      .stats { grid-template-columns: 1fr; }
+      .stats div { padding: 15px 4px; }
+      .stats div + div { border-left: 0; border-top: 1px solid var(--border); }
+      .service-grid, .nexora-process-grid, .price-grid { grid-template-columns: 1fr; }
+      .section-heading { display: block; }
+      .section-heading p { margin-top: 12px; }
+      .contact-box { padding: 42px 22px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+    }
+
   </style>
 
 </head>
@@ -232,11 +370,11 @@
       <div class="hero-content">
         <div class="eyebrow"><span class="status-dot"></span> DIGITAL DEVELOPMENT STUDIO</div>
 
-        <h1>Создаём цифровые<br>продукты <span>нового уровня.</span></h1>
+        <h1>Сайты и цифровые<br>инструменты <span>для бизнеса.</span></h1>
 
         <p class="hero-description">
-          Разрабатываем современные сайты, Telegram-ботов
-          и веб-приложения для бизнеса и новых проектов.
+          Проектируем и собираем сайты, Telegram-ботов и веб-инструменты
+          под конкретные задачи компании.
         </p>
 
         <div class="hero-actions">
@@ -246,15 +384,15 @@
 
         <div class="hero-note">
           <span class="status-dot"></span>
-          Современная разработка · Индивидуальный подход
+          Сайты · Боты · Веб-инструменты
         </div>
       </div>
 
       <div class="hero-visual">
         <div class="visual-card">
           <div class="visual-top">
-            <span>✳ NEXORA LAB</span>
-            <span class="live">● ONLINE</span>
+            <span>NEXORA / DIGITAL STUDIO</span>
+            <span class="live">WEB · BOTS · TOOLS</span>
           </div>
           <div class="visual-center">
             <div class="orbit orbit-one"></div>
@@ -262,7 +400,7 @@
             <div class="core">N</div>
           </div>
           <div class="visual-bottom">
-            <span>IDEA → PRODUCT</span>
+            <span>BRIEF → BUILD → LAUNCH</span>
             <span>2026</span>
           </div>
         </div>
@@ -312,12 +450,12 @@
           <div class="eyebrow">WHY NEXORA</div>
           <h2>Внимание к <span>деталям.</span></h2>
         </div>
-        <p>Не просто красивый экран — решение, которое удобно использовать.</p>
+        <p>Сначала разбираемся в задаче. Затем выбираем структуру, функции и визуальный язык.</p>
       </div>
       <div class="nexora-benefits-grid">
-        <article><span>✳</span><div><h3>Индивидуально</h3><p>Подбираем структуру и функции под конкретную задачу.</p></div></article>
-        <article><span>◈</span><div><h3>Современно</h3><p>Актуальный интерфейс и адаптация под смартфоны и компьютеры.</p></div></article>
-        <article><span>⌘</span><div><h3>На связи</h3><p>Согласовываем важные решения и не пропадаем в процессе работы.</p></div></article>
+        <article><span>✳</span><div><h3>Индивидуально</h3><p>Не используем одну заготовку для всех: состав страниц и функций зависит от вашего процесса.</p></div></article>
+        <article><span>◈</span><div><h3>Современно</h3><p>Проверяем основные сценарии на телефонах и компьютерах, а не только на большом экране.</p></div></article>
+        <article><span>⌘</span><div><h3>На связи</h3><p>Показываем промежуточные версии и согласовываем изменения до финальной сдачи.</p></div></article>
       </div>
     </section>
 
@@ -327,7 +465,7 @@
           <div class="eyebrow">WHAT WE DO</div>
           <h2>Наши <span>услуги.</span></h2>
         </div>
-        <p>От идеи до работающего цифрового продукта.</p>
+        <p>Выбираем формат под задачу, а не под модный шаблон.</p>
       </div>
 
       <div class="service-grid">
@@ -371,7 +509,7 @@
           <div class="eyebrow">SELECTED WORK</div>
           <h2>Избранные <span>проекты.</span></h2>
         </div>
-        <p>Посмотрите интерактивные демонстрации наших цифровых решений.</p>
+        <p>Три демонстрации интерфейсов. Это концепты, созданные для показа подхода и возможностей.</p>
       </div>
 
       <div class="project-grid nexora-project-grid">
@@ -446,7 +584,7 @@
           <div class="eyebrow">STARTING PRICES</div>
           <h2>Понятные <span>цены.</span></h2>
         </div>
-        <p>Итоговая стоимость зависит от сложности и функциональности.</p>
+        <p>Ниже — стартовые ориентиры. Точную смету составим после обсуждения задачи.</p>
       </div>
 
       <div class="price-grid">
