@@ -339,6 +339,148 @@
       *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
     }
 
+    /* Final visual polish */
+    body::before {
+      display: block;
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 12% 8%, rgba(116, 91, 173, .13), transparent 34%),
+        radial-gradient(ellipse at 88% 35%, rgba(91, 126, 151, .08), transparent 31%);
+    }
+    .header {
+      background: rgba(11, 12, 18, .88);
+      border-bottom-color: rgba(224, 229, 242, .09);
+    }
+    .logo-icon {
+      border-radius: 9px;
+      background: linear-gradient(145deg, #a996df, #7189a2);
+      box-shadow: 0 5px 18px rgba(137, 119, 190, .2);
+    }
+    .hero { min-height: 610px; }
+    .hero h1 { max-width: 700px; }
+    .hero-description { max-width: 52ch; font-size: 16px; }
+    .hero-visual .visual-card {
+      border-color: rgba(201, 188, 238, .2);
+      background: radial-gradient(ellipse at 50% 40%, rgba(115, 100, 157, .12), transparent 52%), #11141d;
+    }
+    .hero-visual .core {
+      background: radial-gradient(circle at 32% 27%, #c5b5ed, #75658f 42%, #303747 78%);
+      box-shadow: 0 0 44px rgba(145, 126, 194, .2), inset -12px -14px 28px rgba(7, 9, 15, .5);
+    }
+    .stats { margin-top: 0; }
+    .stats strong { font-size: 25px; }
+    .service-grid { gap: 14px; border: 0; }
+    .service-card {
+      position: relative;
+      min-height: 245px;
+      padding: 25px 24px 23px;
+      border: 1px solid rgba(224, 229, 242, .1);
+      border-radius: 13px;
+      background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.012));
+      transition: border-color .22s ease, background .22s ease, transform .22s ease;
+    }
+    .service-card::before { display: block; opacity: .42; }
+    .service-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(183, 166, 231, .38);
+      background: linear-gradient(145deg, rgba(183,166,231,.075), rgba(255,255,255,.015));
+      box-shadow: none;
+    }
+    .service-icon {
+      display: inline-grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      margin: 0 10px 0 0;
+      border: 1px solid rgba(183,166,231,.18);
+      border-radius: 9px;
+      background: rgba(183,166,231,.08);
+      vertical-align: middle;
+    }
+    .service-card h3 { margin-top: 22px; }
+    .service-card p { min-height: 48px; }
+    .service-card a { display: inline-flex; align-items: center; gap: 8px; }
+    .service-card a::after { content: "↗"; transition: transform .2s ease; }
+    .service-card a:hover::after { transform: translate(2px, -2px); }
+    .nexora-process-grid {
+      gap: 12px;
+      border: 0;
+    }
+    .nexora-process-card {
+      padding: 22px;
+      border: 1px solid rgba(224,229,242,.1);
+      border-radius: 12px;
+      background: linear-gradient(145deg, rgba(255,255,255,.03), rgba(255,255,255,.008));
+    }
+    .nexora-process-card > span {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      margin-bottom: 20px;
+      border: 1px solid rgba(183,166,231,.2);
+      border-radius: 9px;
+      background: rgba(183,166,231,.08);
+      letter-spacing: 0;
+    }
+    .nexora-benefits-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      border: 0;
+    }
+    .nexora-benefits-grid article {
+      min-height: 130px;
+      padding: 21px;
+      border: 1px solid rgba(224,229,242,.1);
+      border-radius: 12px;
+      background: rgba(255,255,255,.02);
+    }
+    .project-grid { gap: 14px; }
+    .project-card, .nexora-project-card {
+      border-radius: 14px;
+      background: #11141d;
+    }
+    .nexora-project-link .project-preview { min-height: 285px; }
+    .nexora-project-card.project-large .project-preview { min-height: 585px; }
+    .project-info { padding-inline: 20px; }
+    .nexora-project-cta { margin-top: 10px; }
+    .price-card {
+      padding: 28px;
+      border-radius: 14px;
+      background: linear-gradient(150deg, rgba(255,255,255,.04), rgba(255,255,255,.012));
+    }
+    .price-card.featured {
+      border-color: rgba(183,166,231,.48);
+      background: radial-gradient(ellipse at 95% 0%, rgba(183,166,231,.12), transparent 48%), #13151f;
+    }
+    .price { font-size: clamp(26px, 2.4vw, 32px); }
+    .contact-box {
+      border-radius: 16px;
+      background: radial-gradient(ellipse at 92% 0%, rgba(129,112,174,.13), transparent 42%), #11141d;
+    }
+    .contact-box h2 { max-width: 760px; }
+    .nexora-telegram-link { min-height: 46px; }
+    .footer { border-top-color: rgba(224,229,242,.09); }
+    @media (max-width: 900px) {
+      .service-card { min-height: 235px; }
+      .nexora-benefits-grid { grid-template-columns: 1fr; }
+      .nexora-benefits-grid article { min-height: 0; }
+    }
+    @media (max-width: 600px) {
+      .hero { min-height: 0; }
+      .service-card { min-height: 0; padding: 22px 18px; }
+      .service-card p { min-height: 0; }
+      .nexora-process-grid { gap: 0; }
+      .nexora-process-card { padding: 19px 2px; border-width: 0 0 1px; border-radius: 0; background: transparent; }
+      .nexora-project-link .project-preview,
+      .nexora-project-card.project-large .project-preview { min-height: 255px; }
+      .project-info { padding-inline: 15px; }
+      .price-card { padding: 24px 20px; }
+    }
+
   </style>
 
 </head>
