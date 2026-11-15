@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const loader = document.createElement("div");
     loader.id = "nexora-loader";
     loader.innerHTML = `
-      <div class="loader-logo">NEXORA<span>.</span></div>
+      <div class="loader-logo">NEXORA</div>
       <div class="loader-line"></div>
       <div class="loader-caption">DIGITAL DEVELOPMENT STUDIO</div>
     `;
@@ -218,7 +218,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     submitButton.disabled = true;
-    submitButton.textContent = "Отправляем...";
+    submitButton.textContent = "Отправляем";
     formMessage.textContent = "";
 
     try {
