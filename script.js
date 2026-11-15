@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     height: "3px",
     width: "0%",
     zIndex: "99999",
-    background: "linear-gradient(90deg, #8b5cf6, #38bdf8)",
-    boxShadow: "0 0 12px rgba(139,92,246,.6)",
+    background: "linear-gradient(90deg, #e6e6e3, #77797a)",
+    boxShadow: "none",
     pointerEvents: "none"
   });
 
