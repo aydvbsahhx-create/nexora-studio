@@ -794,6 +794,53 @@
       .contact-form #submitOrder { width: 100%; }
       .footer { gap: 18px; }
     }
+    /* Micro-interactions: restrained light, lift and press feedback */
+    .button, .nexora-project-cta, .nexora-telegram-link {
+      position: relative; overflow: hidden; isolation: isolate;
+      transition: transform .22s cubic-bezier(.2,.75,.25,1), background-color .22s ease,
+        border-color .22s ease, color .22s ease, box-shadow .22s ease;
+    }
+    .button::before, .nexora-project-cta::before, .nexora-telegram-link::before {
+      content: ""; position: absolute; z-index: 0;
+      top: -70%; bottom: -70%; left: -55%; width: 38%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.24), transparent);
+      transform: skewX(-20deg); transition: left .55s cubic-bezier(.2,.7,.2,1);
+      pointer-events: none;
+    }
+    .button:hover::before, .nexora-project-cta:hover::before, .nexora-telegram-link:hover::before { left: 125%; }
+    .button:hover, .nexora-project-cta:hover, .nexora-telegram-link:hover { transform: translateY(-2px); }
+    .button:active, .nexora-project-cta:active, .nexora-telegram-link:active {
+      transform: translateY(1px) scale(.985); transition-duration: .08s;
+    }
+    .button.primary:hover { box-shadow: 0 8px 24px rgba(255,255,255,.08); }
+    .service-card, .project-card, .price-card, .nexora-process-card, .nexora-benefits-grid article {
+      transition: transform .3s cubic-bezier(.2,.75,.25,1), border-color .3s ease,
+        background-color .3s ease, box-shadow .3s ease;
+    }
+    .service-card:hover, .project-card:hover, .price-card:hover {
+      box-shadow: 0 16px 34px rgba(0,0,0,.24);
+    }
+    .nexora-process-card:hover, .nexora-benefits-grid article:hover {
+      transform: translateY(-3px); border-color: rgba(255,255,255,.25);
+      background-color: #141516;
+    }
+    .hero-visual .visual-card { animation: panelEnter .8s .12s both cubic-bezier(.2,.75,.25,1); }
+    .hero-visual .visual-card:hover { border-color: rgba(255,255,255,.25); }
+    .reveal { transition: opacity .55s ease, filter .55s ease, transform .55s cubic-bezier(.2,.7,.2,1); }
+    .reveal:not(.visible) { opacity: 0; filter: blur(3px); transform: translateY(20px) scale(.99); }
+    .reveal.visible { opacity: 1; filter: blur(0); transform: translateY(0) scale(1); }
+    @keyframes panelEnter {
+      from { opacity: 0; transform: translateY(18px) scale(.985); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @media (hover: none) {
+      .button::before, .nexora-project-cta::before, .nexora-telegram-link::before { display: none; }
+      .nexora-process-card:hover, .nexora-benefits-grid article:hover { transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-visual .visual-card { animation: none; }
+      .reveal:not(.visible) { opacity: 1; filter: none; transform: none; }
+    }
 
   </style>
 
