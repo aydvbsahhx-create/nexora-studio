@@ -37,8 +37,8 @@ h2{font-size:18px;margin-bottom:22px}
 .note{margin-top:25px;text-align:center;font-size:12px;color:#737d91}
 .back{color:#b7bbc3;text-decoration:none;font-size:13px;border:1px solid #34383f;border-radius:8px;padding:10px 13px;transition:.2s}.back:hover{background:#24272c;transform:translateY(-2px)}
 .panel{transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease;transform-style:preserve-3d}.panel:hover{border-color:#51565e;box-shadow:0 24px 55px #0008}
-.phone{perspective:900px;transform:rotateY(-5deg) rotateX(2deg);box-shadow:0 35px 70px #0008;transition:transform .45s cubic-bezier(.2,.7,.2,1)}.phone:hover{transform:rotateY(0) rotateX(0) translateY(-5px)}
-.avatar{background:linear-gradient(145deg,#e4e5e6,#777b80);color:#17191c;box-shadow:inset 2px 2px 6px #fff8,inset -3px -4px 8px #0006;transform:translateZ(12px)}
+.phone{perspective:none;transform:none!important;transform-style:flat;box-shadow:0 28px 55px #0007;clip-path:none;transition:transform .35s cubic-bezier(.2,.7,.2,1)}.phone:hover{transform:translateY(-4px)!important}
+.avatar{background:linear-gradient(145deg,#e4e5e6,#777b80);color:#17191c;box-shadow:inset 2px 2px 6px #fff8,inset -3px -4px 8px #0006}
 .message{animation:messageIn .32s both}.buttons button{transition:transform .2s ease,background .2s ease,box-shadow .2s ease}.buttons button:hover{transform:translateY(-2px) rotateX(3deg);box-shadow:0 8px 18px #0005}.buttons button:active{transform:scale(.97)}
 .result{transition:opacity .2s,transform .2s}.result.updated{animation:messageIn .28s both}
 .reset{margin-top:12px;border:1px solid #41464d;border-radius:8px;padding:9px 12px;background:transparent;color:#b9bdc2;cursor:pointer}.reset:hover{background:#282b30}
@@ -50,14 +50,14 @@ h2{font-size:18px;margin-bottom:22px}
 <body>
 <div class="container">
 <header>
-<div class="logo">NEXORA<span>.</span></div>
+<div class="logo">NEXORA</div>
 <a class="back" href="/">← NEXORA STUDIO</a>
 <div class="tag">TELEGRAM BOT DEMO</div>
 </header>
 
 <section class="hero">
 <h1>Telegram Bot</h1>
-<p>Интерактивная демонстрация возможностей Telegram-ботов от NEXORA STUDIO.</p>
+<p>Интерактивная демонстрация возможностей Telegram-ботов от NEXORA STUDIO</p>
 </section>
 
 <div class="content">
@@ -79,7 +79,7 @@ h2{font-size:18px;margin-bottom:22px}
 <button onclick="show('Техническая поддержка: support@example.com')">Поддержка</button>
 <button onclick="show('Демонстрационный профиль пользователя')">Профиль</button>
 </div>
-<div class="result" id="result">Ожидаю команду...</div>
+<div class="result" id="result">Выберите команду</div>
 <button class="reset" type="button" onclick="resetDemo()">Сбросить диалог</button>
 </div>
 </div>
