@@ -51,6 +51,29 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
+  // 3D emblem tilt stays on the mark itself; no page-wide parallax.
+  const emblem = document.querySelector(".hero-visual .core");
+  const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+
+  if (emblem && hasFinePointer && !reduceMotion) {
+    emblem.addEventListener("pointermove", event => {
+      const bounds = emblem.getBoundingClientRect();
+      const x = (event.clientX - bounds.left) / bounds.width;
+      const y = (event.clientY - bounds.top) / bounds.height;
+      emblem.style.setProperty("--emblem-tilt-x", `${(0.5 - y) * 16}deg`);
+      emblem.style.setProperty("--emblem-tilt-y", `${(x - 0.5) * 16}deg`);
+      emblem.style.setProperty("--emblem-light-x", `${x * 100}%`);
+      emblem.style.setProperty("--emblem-light-y", `${y * 100}%`);
+    });
+
+    emblem.addEventListener("pointerleave", () => {
+      emblem.style.setProperty("--emblem-tilt-x", "0deg");
+      emblem.style.setProperty("--emblem-tilt-y", "0deg");
+      emblem.style.setProperty("--emblem-light-x", "50%");
+      emblem.style.setProperty("--emblem-light-y", "18%");
+    });
+  }
+
   // 3. SCROLL PROGRESS
   let progress = document.querySelector(".scroll-progress");
 

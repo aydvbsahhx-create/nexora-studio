@@ -668,6 +668,66 @@
       .price-card { padding: 24px 20px; }
       .reveal { transition-duration: .4s; }
     }
+    /* Refined hero composition and tactile interaction */
+    .hero { min-height: min(760px, calc(100svh - 72px)); padding-top: 70px; padding-bottom: 70px; }
+    .hero-content { max-width: 620px; }
+    .hero .eyebrow { margin-bottom: 27px; }
+    .hero h1 { font-size: clamp(44px, 5.4vw, 74px); line-height: 1.02; }
+    .hero-description { max-width: 48ch; margin-top: 24px; line-height: 1.8; }
+    .hero-actions { margin-top: 30px; }
+    .hero-visual { max-width: 500px; }
+    .hero-visual .visual-card {
+      width: min(100%, 420px); min-height: 370px; padding: 27px 28px 22px;
+      border-radius: 18px; background: linear-gradient(145deg,#141516,#0d0e0f 64%);
+      box-shadow: 0 34px 80px rgba(0,0,0,.45), inset 0 1px rgba(255,255,255,.05);
+    }
+    .visual-top, .visual-bottom { letter-spacing: .13em; font-size: 9px; }
+    .visual-top .live { padding: 6px 9px; border: 1px solid rgba(255,255,255,.14); border-radius: 4px; }
+    .visual-center {
+      min-height: 268px; position: relative;
+      background: radial-gradient(ellipse,rgba(255,255,255,.055),transparent 48%);
+      animation: emblemFloat 6s ease-in-out infinite;
+    }
+    .hero-visual .core {
+      width: 148px; height: 148px; border-radius: 37px;
+      box-shadow: 0 34px 46px rgba(0,0,0,.55), 0 10px 0 #252728, 0 13px 0 #111213,
+        inset 1px 1px 1px rgba(255,255,255,.75), inset -10px -12px 22px rgba(0,0,0,.48);
+      animation: none;
+      transform: rotateX(var(--emblem-tilt-x, 0deg)) rotateY(var(--emblem-tilt-y, 0deg));
+      transition: transform .16s ease-out, box-shadow .25s ease;
+      will-change: transform;
+    }
+    .hero-visual .core::before { inset: 5px; border-radius: 31px; }
+    .hero-visual .core::after {
+      background: radial-gradient(circle at var(--emblem-light-x, 50%) var(--emblem-light-y, 18%), rgba(255,255,255,.34), transparent 58%);
+      transform: none; animation: none;
+    }
+    .visual-bottom { display:flex; justify-content:space-between; }
+    .section-heading { margin-bottom: 38px; }
+    .section-heading .eyebrow { margin-bottom: 15px; }
+    .section-heading h2 { font-size: clamp(32px,4vw,48px); }
+    .stats div { padding: 24px 20px; }
+    .service-card { min-height: 260px; }
+    .service-card h3 { font-size: 21px; }
+    .nexora-project-info h3, .price-card h3 { letter-spacing: -.025em; }
+    .nexora-project-cta { min-height: 46px; }
+    .contact-box { padding-block: 64px; }
+    @keyframes emblemFloat {
+      0%,100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    @media (max-width: 900px) {
+      .hero { min-height: 0; }
+    }
+    @media (max-width: 600px) {
+      .hero { padding-top: 50px; padding-bottom: 48px; }
+      .hero-visual .visual-card { min-height: 330px; padding: 21px 19px 17px; }
+      .visual-center { min-height: 235px; }
+      .hero-visual .core { width: 124px; height: 124px; border-radius: 31px; }
+      .hero-visual .core::before { border-radius: 25px; }
+      .service-card { min-height: 0; }
+      .contact-box { padding-block: 42px; }
+    }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
     }
