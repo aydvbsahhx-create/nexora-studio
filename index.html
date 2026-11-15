@@ -699,6 +699,8 @@
     }
     .hero-visual .core::before { inset: 5px; border-radius: 31px; }
     .hero-visual .core::after {
+      inset: 0; width: auto; height: auto; left: 0; top: 0;
+      border: 0; border-radius: inherit; box-shadow: none;
       background: radial-gradient(circle at var(--emblem-light-x, 50%) var(--emblem-light-y, 18%), rgba(255,255,255,.34), transparent 58%);
       transform: none; animation: none;
     }
@@ -730,6 +732,67 @@
     }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+    /* Final composition pass */
+    .section { padding-top: clamp(82px, 10vw, 126px); }
+    .section-heading { align-items: end; gap: 40px; margin-bottom: 34px; }
+    .section-heading > div { flex: 1; }
+    .section-heading p { max-width: 36ch; margin-bottom: 4px; font-size: 14px; }
+    .section-heading .eyebrow { display: flex; align-items: center; gap: 12px; }
+    .section-heading .eyebrow::before { content: ""; width: 22px; height: 1px; background: #77797a; }
+    .hero { gap: clamp(36px, 7vw, 96px); }
+    .hero-visual .visual-card { position: relative; }
+    .hero-visual .visual-card::after {
+      content: ""; position: absolute; inset: 10px; border: 1px solid rgba(255,255,255,.035);
+      border-radius: 12px; pointer-events: none;
+    }
+    .visual-center { background: radial-gradient(ellipse,rgba(255,255,255,.075),transparent 48%); }
+    .hero-visual .core { border-color: rgba(255,255,255,.7); }
+    .stats { margin-top: 2px; }
+    .stats div { min-height: 80px; }
+    .stats strong { font-size: 28px; }
+    .service-card { min-height: 254px; display: flex; flex-direction: column; align-items: flex-start; }
+    .service-card p { flex: 1; }
+    .service-card a { padding-top: 8px; border-top: 1px solid rgba(255,255,255,.1); width: 100%; }
+    .nexora-process-card { min-height: 180px; }
+    .nexora-benefits-grid article { min-height: 148px; }
+    .project-card, .nexora-project-card { overflow: hidden; }
+    .nexora-project-link { display: block; overflow: hidden; }
+    .nexora-project-link .project-preview { transition: transform .55s cubic-bezier(.2,.7,.2,1); }
+    .nexora-project-link:hover .project-preview { transform: scale(1.025); filter: none; }
+    .project-info { min-height: 82px; align-items: center; }
+    .nexora-project-cta { margin: 0 16px 16px; }
+    .price-card { min-height: 340px; display: flex; flex-direction: column; align-items: flex-start; }
+    .price-card p { flex: 1; }
+    .price-card .button { margin-top: 18px; }
+    .popular { border: 1px solid rgba(255,255,255,.16); }
+    .contact-box { padding: clamp(36px, 6vw, 68px); }
+    .contact-form { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px; }
+    .contact-form .honeypot-field { display: none; }
+    .contact-form .form-group:nth-of-type(4),
+    .contact-form #submitOrder, .contact-form .form-message { grid-column: 1 / -1; }
+    .contact-form #submitOrder { justify-self: start; min-width: 200px; }
+    .contact-form textarea { min-height: 132px; }
+    .footer { min-height: 90px; }
+    @media (max-width: 900px) {
+      .section-heading { gap: 24px; }
+      .hero { gap: 32px; }
+      .nexora-process-card, .nexora-benefits-grid article { min-height: 0; }
+    }
+    @media (max-width: 600px) {
+      .section { padding-top: 76px; }
+      .section-heading { margin-bottom: 24px; }
+      .section-heading p { max-width: none; }
+      .hero { gap: 26px; }
+      .hero-visual .visual-card { width: 100%; }
+      .service-card { min-height: 0; }
+      .nexora-project-cta { margin: 0 12px 12px; }
+      .price-card { min-height: 0; }
+      .contact-form { grid-template-columns: 1fr; }
+      .contact-form .form-group, .contact-form .form-group:nth-of-type(4),
+      .contact-form #submitOrder, .contact-form .form-message { grid-column: 1; }
+      .contact-form #submitOrder { width: 100%; }
+      .footer { gap: 18px; }
     }
 
   </style>
