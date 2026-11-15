@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEXORA — Analytics Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
@@ -25,7 +25,7 @@
       padding: 30px 20px;
     }
 
-    .logo { font-size: 23px; font-weight: 800; letter-spacing: 2px; }
+    .logo { display:inline-block; color:inherit; text-decoration:none; font-size: 23px; font-weight: 800; letter-spacing: 2px; }
     .logo span { color: #8b6cff; }
 
     .nav-title {
@@ -116,6 +116,21 @@
       text-align: center;
     }
 
+    .toolbar { display:flex; align-items:center; gap:10px; }
+    .toolbar select, .toolbar button { min-height:42px; padding:0 14px; border:1px solid #343b4a; border-radius:10px; color:#edf0f4; background:#15181e; font:inherit; cursor:pointer; }
+    .toolbar button { background:#e5e7eb; color:#111318; font-weight:700; }
+    .toolbar button:hover { transform:translateY(-2px); }
+    .card, .panel { transition:transform .3s ease,border-color .3s ease,box-shadow .3s ease; transform-style:preserve-3d; }
+    .card:hover, .panel:hover { border-color:#586171; box-shadow:0 20px 45px rgba(0,0,0,.28); }
+    .card-value { transform:translateZ(12px); }
+    .cards .card { animation:riseIn .55s both; }
+    .cards .card:nth-child(2){animation-delay:.07s}.cards .card:nth-child(3){animation-delay:.14s}.cards .card:nth-child(4){animation-delay:.21s}
+    .panel { animation:riseIn .65s .18s both; }
+    .toast { position:fixed; right:22px; bottom:22px; padding:13px 17px; border:1px solid #414958; border-radius:10px; color:#f1f2f4; background:#191c22; box-shadow:0 14px 40px #0008; opacity:0; transform:translateY(12px); transition:.25s; pointer-events:none; z-index:10; }
+    .toast.show { opacity:1; transform:translateY(0); }
+    @keyframes riseIn { from {opacity:0;transform:translateY(14px)} to {opacity:1;transform:translateY(0)} }
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+
     @media(max-width: 1000px) {
       .cards { grid-template-columns: repeat(2, 1fr); }
       .content { grid-template-columns: 1fr; }
@@ -125,6 +140,8 @@
       aside { display: none; }
       main { padding: 20px 14px; }
       header { align-items: flex-start; flex-direction: column; }
+      .toolbar { flex-wrap: wrap; width: 100%; }
+      .toolbar select, .toolbar button { flex: 1; }
       h1 { font-size: 23px; }
       .cards { gap: 10px; }
       .card { padding: 15px; }
@@ -137,7 +154,7 @@
 <div class="layout">
 
   <aside>
-    <div class="logo">NEXORA<span>.</span></div>
+    <a class="logo" href="/">NEXORA<span>.</span></a>
     <div class="nav-title">WORKSPACE</div>
     <div class="nav-item active">◈ Обзор</div>
     <div class="nav-item">▤ Аналитика</div>
@@ -151,7 +168,7 @@
         <h1>Dashboard Overview</h1>
         <div class="subtitle">Добро пожаловать в панель аналитики NEXORA</div>
       </div>
-      <div class="profile">● Demo Account</div>
+      <div class="toolbar"><select id="periodSelect" aria-label="Период отчёта"><option value="month">Этот месяц</option><option value="quarter">Квартал</option><option value="year">Год</option></select><button id="exportReport" type="button">Скачать CSV</button><div class="profile">● Demo Account</div></div>
     </header>
 
     <section class="cards">
@@ -211,11 +228,12 @@
     </div>
   </main>
 </div>
+<div class="toast" id="dashboardToast" role="status"></div>
 
 <script>
   const ctx = document.getElementById("incomeChart");
 
-  new Chart(ctx, {
+  const dashboardChart = new Chart(ctx, {
     type: "line",
     data: {
       labels: ["Янв", "Фев", "Мар", "Апр", "Май", "Июн", "Июл"],
@@ -250,6 +268,41 @@
       }
     }
   });
+
+  const periods = {
+    month: [12000,18000,15000,27000,23000,35000,42000],
+    quarter: [28000,32000,26000,39000,36000,47000,52000],
+    year: [18000,24000,31000,28000,39000,45000,61000]
+  };
+  document.getElementById("periodSelect").addEventListener("change", event => {
+    dashboardChart.data.datasets[0].data = periods[event.target.value];
+    dashboardChart.update();
+    showToast("График обновлён для выбранного периода");
+  });
+  document.getElementById("exportReport").addEventListener("click", () => {
+    const rows = [["Месяц","Доход"], ...dashboardChart.data.labels.map((label,index) => [label,dashboardChart.data.datasets[0].data[index]])];
+    const csv = rows.map(row => row.join(",")).join("\n");
+    const link = document.createElement("a");
+    link.href = URL.createObjectURL(new Blob(["\uFEFF" + csv], {type:"text/csv;charset=utf-8"}));
+    link.download = "nexora-demo-report.csv"; link.click();
+    window.setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  });
+
+  function showToast(message) {
+    const toast = document.getElementById("dashboardToast");
+    toast.textContent = message; toast.classList.add("show");
+    window.setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  if (matchMedia("(hover:hover) and (pointer:fine)").matches && !matchMedia("(prefers-reduced-motion:reduce)").matches) {
+    document.querySelectorAll(".card,.panel").forEach(card => {
+      card.addEventListener("pointermove", event => {
+        const box=card.getBoundingClientRect(), x=(event.clientX-box.left)/box.width, y=(event.clientY-box.top)/box.height;
+        card.style.transform=`perspective(900px) rotateX(${(0.5-y)*3}deg) rotateY(${(x-0.5)*3}deg) translateY(-2px)`;
+      });
+      card.addEventListener("pointerleave",()=>card.style.transform="");
+    });
+  }
 </script>
 </body>
 </html>
