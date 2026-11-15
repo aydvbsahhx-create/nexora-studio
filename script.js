@@ -168,6 +168,56 @@ document.addEventListener("DOMContentLoaded", () => {
     counters.forEach(animateCounter);
   }
 
+  // Interactive brief: show the published starting price and prefill the inquiry.
+  const briefService = document.getElementById("briefService");
+  const briefPrice = document.getElementById("briefPrice");
+  const briefSummaryText = document.getElementById("briefSummaryText");
+  const briefToForm = document.getElementById("briefToForm");
+  const serviceBriefs = {
+    website: { label: "Сайт-визитка", price: "от 3 000 ₽", serviceIndex: 1 },
+    landing: { label: "Лендинг", price: "от 5 000 ₽", serviceIndex: 1 },
+    telegram: { label: "Telegram-бот", price: "от 3 000 ₽", serviceIndex: 2 },
+    app: { label: "Веб-приложение", price: "По задаче", serviceIndex: 3 },
+    automation: { label: "Автоматизация", price: "По задаче", serviceIndex: 4 }
+  };
+
+  const updateBrief = () => {
+    if (!briefService || !briefPrice || !briefSummaryText) return;
+    const brief = serviceBriefs[briefService.value];
+    const selectedFeatures = [...document.querySelectorAll(".brief-features input:checked")]
+      .map(input => input.parentElement.textContent.trim());
+    briefPrice.textContent = brief.price;
+    briefSummaryText.textContent = selectedFeatures.length
+      ? `${brief.label}. Учтём: ${selectedFeatures.join(", ")}`
+      : `${brief.label}. Итог зависит от состава страниц и функций`;
+  };
+
+  if (briefService) {
+    briefService.addEventListener("change", updateBrief);
+    document.querySelectorAll(".brief-features input").forEach(input => {
+      input.addEventListener("change", updateBrief);
+    });
+    updateBrief();
+  }
+
+  if (briefToForm) {
+    briefToForm.addEventListener("click", () => {
+      const brief = serviceBriefs[briefService.value];
+      const serviceSelect = document.getElementById("clientService");
+      const budgetSelect = document.getElementById("clientBudget");
+      const description = document.getElementById("clientDescription");
+      const selectedFeatures = [...document.querySelectorAll(".brief-features input:checked")]
+        .map(input => input.parentElement.textContent.trim());
+      const notes = [`Тип проекта: ${brief.label}`, `Стартовый ориентир: ${brief.price}`];
+      if (selectedFeatures.length) notes.push(`Функции: ${selectedFeatures.join(", ")}`);
+      serviceSelect.selectedIndex = brief.serviceIndex;
+      budgetSelect.selectedIndex = budgetSelect.options.length - 1;
+      description.value = `${notes.join("\n")}\n\n`;
+      document.getElementById("contact").scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth" });
+      window.setTimeout(() => document.getElementById("clientName").focus(), reduceMotion ? 0 : 450);
+    });
+  }
+
   // 6. SMOOTH ANCHOR SCROLL
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", event => {

@@ -841,6 +841,53 @@
       .hero-visual .visual-card { animation: none; }
       .reveal:not(.visible) { opacity: 1; filter: none; transform: none; }
     }
+    #nexora-loader { background: #090a0b; color: #f1f1ef; }
+    #nexora-loader::before {
+      content: ""; position: absolute; inset: 22px;
+      border: 1px solid rgba(255,255,255,.08); border-radius: 16px; pointer-events: none;
+    }
+    .loader-logo {
+      color: #ededeb; font: 600 26px/1 "Space Grotesk", sans-serif;
+      letter-spacing: .24em; animation: loaderArrive .65s ease both;
+    }
+    .loader-logo span { display: none; }
+    .loader-line { width: 156px; height: 2px; border-radius: 0; background: rgba(255,255,255,.12); }
+    .loader-line::after {
+      width: 36%; background: linear-gradient(90deg,#77797a,#e3e3e0,#77797a);
+      animation: loaderProgress 1.5s cubic-bezier(.45,0,.55,1) infinite;
+    }
+    .loader-caption { color: #888a8b; font-size: 9px; letter-spacing: .22em; }
+    @keyframes loaderArrive {
+      from { opacity: 0; transform: translateY(8px); letter-spacing: .34em; }
+      to { opacity: 1; transform: translateY(0); letter-spacing: .24em; }
+    }
+    @media (prefers-reduced-motion: reduce) { .loader-logo { animation: none; } }
+    .studio-claim { margin: 0 0 14px; color: #c6c7c5; font-size: 14px; letter-spacing: .015em; }
+    .project-case { margin: 0 16px 16px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,.1); }
+    .project-case summary { color: #d7d8d6; cursor: pointer; font-size: 12px; list-style: none; }
+    .project-case summary::-webkit-details-marker { display: none; }
+    .project-case summary::after { content: "+"; float: right; color: #929394; transition: transform .2s ease; }
+    .project-case[open] summary::after { transform: rotate(45deg); }
+    .project-case > div { padding: 12px 0 2px; }
+    .project-case p { margin: 0 0 8px; color: #a0a1a2; font-size: 12px; line-height: 1.6; }
+    .project-case small { color: #77797a; font-size: 10px; }
+    .price-note { display: block; margin-top: 12px; color: #858687; font-size: 11px; line-height: 1.5; }
+    .brief-panel { display: grid; grid-template-columns: 1.15fr .85fr; gap: 28px; padding: clamp(22px,4vw,38px); border: 1px solid rgba(255,255,255,.13); border-radius: 14px; background: #101112; }
+    .brief-controls { display: grid; align-content: start; gap: 13px; }
+    .brief-label { color: #d6d6d3; font-size: 13px; font-weight: 600; }
+    .brief-select { width: 100%; min-height: 48px; padding: 0 14px; border: 1px solid rgba(255,255,255,.16); border-radius: 8px; color: #eee; background: #0b0c0d; font: inherit; }
+    .brief-features { display: grid; gap: 12px; margin: 8px 0 0; padding: 0; border: 0; }
+    .brief-features legend { margin-bottom: 4px; }
+    .brief-features label { display: flex; align-items: center; gap: 10px; color: #aeb0b0; font-size: 13px; cursor: pointer; }
+    .brief-features input { width: 16px; height: 16px; accent-color: #d0d0cd; }
+    .brief-summary { display: flex; flex-direction: column; align-items: flex-start; padding: 22px; border: 1px solid rgba(255,255,255,.1); border-radius: 10px; background: #0b0c0d; }
+    .brief-summary-label { color: #888a8b; font-size: 9px; letter-spacing: .16em; }
+    .brief-summary strong { margin-top: 18px; color: #f1f1ef; font: 500 clamp(26px,3vw,36px) "Space Grotesk", sans-serif; }
+    .brief-summary p { flex: 1; margin: 12px 0; color: #a0a1a2; font-size: 13px; line-height: 1.6; }
+    .brief-summary small { margin-bottom: 18px; color: #77797a; font-size: 10px; }
+    .brief-summary .button { width: 100%; }
+    .brief-select:focus-visible, .brief-features input:focus-visible { outline: 2px solid #e4e4e1; outline-offset: 3px; }
+    @media (max-width: 700px) { .brief-panel { grid-template-columns: 1fr; gap: 20px; } }
 
   </style>
 
@@ -873,16 +920,18 @@
       <div class="hero-content">
         <div class="eyebrow"><span class="status-dot"></span> DIGITAL DEVELOPMENT STUDIO</div>
 
+        <p class="studio-claim">Цифровые инструменты без лишнего</p>
+
         <h1>Сайты и цифровые<br>инструменты <span>для бизнеса</span></h1>
 
         <p class="hero-description">
           Проектируем и собираем сайты, Telegram-ботов и веб-инструменты
-          под конкретные задачи компании.
+          под конкретные задачи компании
         </p>
 
         <div class="hero-actions">
           <a href="#projects" class="button primary">Наши проекты ↗</a>
-          <a href="#contact" class="button secondary">Обсудить задачу</a>
+          <a href="#brief" class="button secondary">Собрать бриф</a>
         </div>
 
         <div class="hero-note">
@@ -925,24 +974,24 @@
           <div class="eyebrow">HOW WE WORK</div>
           <h2>От идеи до <span>запуска</span></h2>
         </div>
-        <p>Понятный процесс, прозрачные этапы и связь на каждом шаге.</p>
+        <p>Понятный процесс, прозрачные этапы и связь на каждом шаге</p>
       </div>
       <div class="nexora-process-grid">
         <article class="nexora-process-card">
           <span>01</span><h3>Знакомство</h3>
-          <p>Обсуждаем вашу задачу, цели и желаемый результат.</p>
+          <p>Обсуждаем вашу задачу, цели и желаемый результат</p>
         </article>
         <article class="nexora-process-card">
           <span>02</span><h3>План и стоимость</h3>
-          <p>Согласовываем функциональность, сроки и итоговую цену до старта.</p>
+          <p>Согласовываем функциональность, сроки и итоговую цену до старта</p>
         </article>
         <article class="nexora-process-card">
           <span>03</span><h3>Разработка</h3>
-          <p>Создаём продукт и показываем промежуточный результат.</p>
+          <p>Создаём продукт и показываем промежуточный результат</p>
         </article>
         <article class="nexora-process-card">
           <span>04</span><h3>Проверка и запуск</h3>
-          <p>Тестируем готовое решение и передаём вам результат.</p>
+          <p>Тестируем готовое решение и передаём вам результат</p>
         </article>
       </div>
     </section>
@@ -953,12 +1002,12 @@
           <div class="eyebrow">WHY NEXORA</div>
           <h2>Внимание к <span>деталям</span></h2>
         </div>
-        <p>Сначала разбираемся в задаче. Затем выбираем структуру, функции и визуальный язык.</p>
+        <p>Сначала разбираемся в задаче. Затем выбираем структуру, функции и визуальный язык</p>
       </div>
       <div class="nexora-benefits-grid">
-        <article><span>✳</span><div><h3>Индивидуально</h3><p>Не используем одну заготовку для всех: состав страниц и функций зависит от вашего процесса.</p></div></article>
-        <article><span>◈</span><div><h3>Современно</h3><p>Проверяем основные сценарии на телефонах и компьютерах, а не только на большом экране.</p></div></article>
-        <article><span>⌘</span><div><h3>На связи</h3><p>Показываем промежуточные версии и согласовываем изменения до финальной сдачи.</p></div></article>
+        <article><span>✳</span><div><h3>Индивидуально</h3><p>Не используем одну заготовку для всех: состав страниц и функций зависит от вашего процесса</p></div></article>
+        <article><span>◈</span><div><h3>Современно</h3><p>Проверяем основные сценарии на телефонах и компьютерах, а не только на большом экране</p></div></article>
+        <article><span>⌘</span><div><h3>На связи</h3><p>Показываем промежуточные версии и согласовываем изменения до финальной сдачи</p></div></article>
       </div>
     </section>
 
@@ -968,7 +1017,7 @@
           <div class="eyebrow">WHAT WE DO</div>
           <h2>Наши <span>услуги</span></h2>
         </div>
-        <p>Выбираем формат под задачу, а не под модный шаблон.</p>
+        <p>Выбираем формат под задачу, а не под модный шаблон</p>
       </div>
 
       <div class="service-grid">
@@ -976,7 +1025,7 @@
           <div class="service-icon">◈</div>
           <span class="service-number">01 / WEB</span>
           <h3>Разработка сайтов</h3>
-          <p>Лендинги, сайты-визитки и каталоги для бизнеса с современным дизайном.</p>
+          <p>Лендинги, сайты-визитки и каталоги для бизнеса с современным дизайном</p>
           <a href="#contact">Обсудить проект ↗</a>
         </article>
 
@@ -984,7 +1033,7 @@
           <div class="service-icon">⌘</div>
           <span class="service-number">02 / BOTS</span>
           <h3>Telegram-боты</h3>
-          <p>Запись клиентов, автоматизация заявок, каталоги и удобные меню.</p>
+          <p>Запись клиентов, автоматизация заявок, каталоги и удобные меню</p>
           <a href="#contact">Обсудить проект ↗</a>
         </article>
 
@@ -992,7 +1041,7 @@
           <div class="service-icon">▣</div>
           <span class="service-number">03 / APPS</span>
           <h3>Веб-приложения</h3>
-          <p>Онлайн-сервисы, личные кабинеты, калькуляторы и интерактивные инструменты.</p>
+          <p>Онлайн-сервисы, личные кабинеты, калькуляторы и интерактивные инструменты</p>
           <a href="#contact">Обсудить проект ↗</a>
         </article>
 
@@ -1000,7 +1049,7 @@
           <div class="service-icon">✳</div>
           <span class="service-number">04 / AI</span>
           <h3>Автоматизация</h3>
-          <p>Инструменты, которые помогают упростить повторяющиеся задачи бизнеса.</p>
+          <p>Инструменты, которые помогают упростить повторяющиеся задачи бизнеса</p>
           <a href="#contact">Обсудить проект ↗</a>
         </article>
       </div>
@@ -1012,7 +1061,7 @@
           <div class="eyebrow">SELECTED WORK</div>
           <h2>Избранные <span>проекты</span></h2>
         </div>
-        <p>Три демонстрации интерфейсов. Это концепты, созданные для показа подхода и возможностей.</p>
+        <p>Три демонстрации интерфейсов. Это концепты, созданные для показа подхода и возможностей</p>
       </div>
 
       <div class="project-grid nexora-project-grid">
@@ -1037,6 +1086,10 @@
             <span>01</span>
           </div>
           <a class="nexora-project-cta" href="/projects/dashboard" target="_blank" rel="noopener">Посмотреть проект <span>↗</span></a>
+          <details class="project-case">
+            <summary>О концепции</summary>
+            <div><p>Концепт панели для быстрого обзора ключевых показателей</p><p>В фокусе — иерархия метрик, читаемые графики и короткий путь к деталям</p><small>Все цифры в превью демонстрационные</small></div>
+          </details>
         </article>
 
         <article class="project-card nexora-project-card">
@@ -1057,6 +1110,10 @@
             <span>02</span>
           </div>
           <a class="nexora-project-cta" href="/projects/telegram-bot" target="_blank" rel="noopener">Посмотреть проект <span>↗</span></a>
+          <details class="project-case">
+            <summary>О концепции</summary>
+            <div><p>Пример сценария бота для первичного контакта с клиентом</p><p>Меню разделяет частые вопросы, список услуг и обращение в поддержку</p><small>Интерфейс показывает демонстрационный сценарий</small></div>
+          </details>
         </article>
 
         <article class="project-card nexora-project-card">
@@ -1076,9 +1133,46 @@
             <span>03</span>
           </div>
           <a class="nexora-project-cta" href="/projects/business-website" target="_blank" rel="noopener">Посмотреть проект <span>↗</span></a>
+          <details class="project-case">
+            <summary>О концепции</summary>
+            <div><p>Сайт для студии интерьеров с акцентом на портфолио и атмосферу</p><p>Спокойная типографика и крупные изображения помогают показать проекты</p><small>Это визуальная концепция, не клиентский заказ</small></div>
+          </details>
         </article>
       </div>
-      <p class="portfolio-disclaimer">Проекты выше — демонстрационные концепты, а не выполненные клиентские заказы.</p>
+      <p class="portfolio-disclaimer">Проекты выше — демонстрационные концепты, а не выполненные клиентские заказы</p>
+    </section>
+
+    <section class="section brief-section" id="brief">
+      <div class="section-heading">
+        <div><div class="eyebrow">PROJECT BRIEF</div><h2>Соберём <span>вашу задачу</span></h2></div>
+        <p>Выберите направление и нужные функции. Ответы перенесутся в форму заявки</p>
+      </div>
+      <div class="brief-panel">
+        <div class="brief-controls">
+          <label class="brief-label" for="briefService">Что нужно сделать</label>
+          <select id="briefService" class="brief-select">
+            <option value="website">Сайт-визитка</option>
+            <option value="landing">Лендинг</option>
+            <option value="telegram">Telegram-бот</option>
+            <option value="app">Веб-приложение</option>
+            <option value="automation">Автоматизация</option>
+          </select>
+          <fieldset class="brief-features">
+            <legend class="brief-label">Что важно учесть</legend>
+            <label><input type="checkbox" value="Адаптация под мобильные устройства"> Адаптация под телефон</label>
+            <label><input type="checkbox" value="Форма заявок и уведомления"> Заявки и уведомления</label>
+            <label><input type="checkbox" value="Интеграции с внешними сервисами"> Интеграции с сервисами</label>
+            <label><input type="checkbox" value="Административная панель"> Управление содержимым</label>
+          </fieldset>
+        </div>
+        <aside class="brief-summary" aria-live="polite">
+          <span class="brief-summary-label">ПРЕДВАРИТЕЛЬНЫЙ ОРИЕНТИР</span>
+          <strong id="briefPrice">от 3 000 ₽</strong>
+          <p id="briefSummaryText">Сайт или лендинг. Итог зависит от состава страниц и функций</p>
+          <small>Это стартовая цена из прайса, не расчёт сметы</small>
+          <button class="button primary" id="briefToForm" type="button">Продолжить с брифом</button>
+        </aside>
+      </div>
     </section>
 
     <section class="section" id="prices">
@@ -1087,7 +1181,7 @@
           <div class="eyebrow">STARTING PRICES</div>
           <h2>Понятные <span>цены</span></h2>
         </div>
-        <p>Ниже — стартовые ориентиры. Точную смету составим после обсуждения задачи.</p>
+        <p>Ниже — стартовые ориентиры. Точную смету составим после обсуждения задачи</p>
       </div>
 
       <div class="price-grid">
@@ -1095,7 +1189,8 @@
           <span class="price-label">01 / WEBSITE</span>
           <h3>Сайт-визитка</h3>
           <div class="price">от 3 000 ₽</div>
-          <p>Компактный сайт для презентации бизнеса или услуги.</p>
+          <p>Компактный сайт для презентации бизнеса или услуги</p>
+          <small class="price-note">Стартовая стоимость зависит от структуры, контента и подключаемых функций</small>
           <a href="#contact" class="button secondary">Выбрать услугу</a>
         </article>
 
@@ -1104,7 +1199,8 @@
           <div class="popular">ПОПУЛЯРНО</div>
           <h3>Лендинг</h3>
           <div class="price">от 5 000 ₽</div>
-          <p>Продающая страница с информацией, преимуществами и контактами.</p>
+          <p>Продающая страница с информацией, преимуществами и контактами</p>
+          <small class="price-note">Финальный состав блоков и стоимость согласуем до начала работ</small>
           <a href="#contact" class="button primary">Выбрать услугу</a>
         </article>
 
@@ -1112,11 +1208,12 @@
           <span class="price-label">03 / TELEGRAM</span>
           <h3>Telegram-бот</h3>
           <div class="price">от 3 000 ₽</div>
-          <p>Бот с меню, заявками и базовыми сценариями автоматизации.</p>
+          <p>Бот с меню, заявками и базовыми сценариями автоматизации</p>
+          <small class="price-note">Интеграции и дополнительные сценарии оцениваются отдельно</small>
           <a href="#contact" class="button secondary">Выбрать услугу</a>
         </article>
       </div>
-      <p class="portfolio-disclaimer">Цены предварительные. Сроки, объём работ и стоимость фиксируются до начала заказа.</p>
+      <p class="portfolio-disclaimer">Цены предварительные. Сроки, объём работ и стоимость фиксируются до начала заказа</p>
     </section>
 
 
@@ -1128,7 +1225,7 @@
 
     <p>
       Расскажите, что хотите создать. Обсудим задачу
-      и подберём подходящее решение.
+      и подберём подходящее решение
     </p>
 
     <a class="nexora-telegram-link" href="https://t.me/Nexor_4" target="_blank" rel="noopener">
