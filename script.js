@@ -51,69 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. PREMIUM 3D HERO TILT
-  const heroVisual = document.querySelector(".hero-visual");
-  const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-  if (heroVisual && finePointer && !reduceMotion) {
-    heroVisual.style.transformStyle = "preserve-3d";
-    heroVisual.style.willChange = "transform";
-
-    heroVisual.addEventListener("mousemove", event => {
-      const rect = heroVisual.getBoundingClientRect();
-      const x = (event.clientX - rect.left) / rect.width;
-      const y = (event.clientY - rect.top) / rect.height;
-
-      heroVisual.style.setProperty("--nexora-rotate-y", `${(x - 0.5) * 18}deg`);
-      heroVisual.style.setProperty("--nexora-rotate-x", `${(0.5 - y) * 18}deg`);
-      heroVisual.style.setProperty("--mouse-x", `${x * 100}%`);
-      heroVisual.style.setProperty("--mouse-y", `${y * 100}%`);
-    });
-
-    heroVisual.addEventListener("mouseleave", () => {
-      heroVisual.style.setProperty("--nexora-rotate-x", "0deg");
-      heroVisual.style.setProperty("--nexora-rotate-y", "0deg");
-    });
-  }
-
-  // 4. BUILD THE 3D CORE AND PARTICLES
-  const visualCenter = document.querySelector(".visual-center");
-  const core = document.querySelector(".hero-visual .core");
-
-  if (visualCenter && core && !visualCenter.querySelector(".nexora-particles")) {
-    // Preserve the existing N mark while adding sphere layers.
-    core.innerHTML = `
-      <span class="core-letter">N</span>
-      <span class="core-sheen"></span>
-      <span class="core-orbit"></span>
-      <span class="core-orbit core-orbit-two"></span>
-    `;
-    core.setAttribute("aria-label", "NEXORA 3D core");
-
-    const particles = document.createElement("div");
-    particles.className = "nexora-particles";
-    particles.setAttribute("aria-hidden", "true");
-
-    for (let i = 0; i < 24; i++) {
-      const particle = document.createElement("span");
-      particle.className = "nexora-particle";
-      const angle = (Math.PI * 2 * i) / 24;
-      const radius = 24 + (i % 5) * 6;
-      const x = 50 + Math.cos(angle) * radius;
-      const y = 50 + Math.sin(angle) * radius * 0.72;
-
-      particle.style.setProperty("--px", `${x}%`);
-      particle.style.setProperty("--py", `${y}%`);
-      particle.style.setProperty("--delay", `${-(i % 8) * 0.45}s`);
-      particle.style.setProperty("--duration", `${4 + (i % 5)}s`);
-      particle.style.setProperty("--size", `${2 + (i % 3)}px`);
-      particles.appendChild(particle);
-    }
-
-    visualCenter.prepend(particles);
-  }
-
-  // 5. SCROLL PROGRESS
+  // 3. SCROLL PROGRESS
   let progress = document.querySelector(".scroll-progress");
 
   if (!progress) {
@@ -143,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("scroll", updateProgress, { passive: true });
   updateProgress();
 
-  // 6. SCROLL REVEAL
+  // 4. SCROLL REVEAL
   const revealElements = document.querySelectorAll(
     ".service-card, .project-card, .price-card, .stats div"
   );
@@ -167,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
     revealElements.forEach(element => element.classList.add("visible"));
   }
 
-  // 7. ANIMATED STATISTICS
+  // 5. ANIMATED STATISTICS
   const counters = document.querySelectorAll("[data-count]");
 
   const animateCounter = element => {
@@ -207,27 +145,7 @@ document.addEventListener("DOMContentLoaded", () => {
     counters.forEach(animateCounter);
   }
 
-  // 8. PROJECT CARD 3D HOVER
-  if (!reduceMotion && finePointer) {
-    document.querySelectorAll(".project-card").forEach(card => {
-      card.addEventListener("mousemove", event => {
-        const rect = card.getBoundingClientRect();
-        const x = (event.clientX - rect.left) / rect.width;
-        const y = (event.clientY - rect.top) / rect.height;
-        const rotateY = (x - 0.5) * 5;
-        const rotateX = (0.5 - y) * 5;
-
-        card.style.transform =
-          `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-5px)`;
-      });
-
-      card.addEventListener("mouseleave", () => {
-        card.style.transform = "";
-      });
-    });
-  }
-
-  // 9. SMOOTH ANCHOR SCROLL
+  // 6. SMOOTH ANCHOR SCROLL
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", event => {
       const targetId = link.getAttribute("href");
@@ -244,38 +162,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // 10. FOOTER YEAR
+  // 7. FOOTER YEAR
   document.querySelectorAll("[data-year]").forEach(element => {
     element.textContent = new Date().getFullYear();
   });
 
-  // 11. PREMIUM CURSOR GLOW
-  if (finePointer && !reduceMotion) {
-    const glow = document.createElement("div");
-    glow.className = "cursor-glow";
-
-    Object.assign(glow.style, {
-      position: "fixed",
-      width: "260px",
-      height: "260px",
-      borderRadius: "50%",
-      pointerEvents: "none",
-      zIndex: "0",
-      opacity: "0.13",
-      background: "radial-gradient(circle, #8b5cf6 0%, transparent 70%)",
-      transform: "translate(-50%, -50%)",
-      left: "-500px",
-      top: "-500px",
-      filter: "blur(20px)"
-    });
-
-    document.body.appendChild(glow);
-
-    window.addEventListener("mousemove", event => {
-      glow.style.left = `${event.clientX}px`;
-      glow.style.top = `${event.clientY}px`;
-    }, { passive: true });
-  }
 });
 
 // =====================================

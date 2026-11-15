@@ -481,6 +481,165 @@
       .price-card { padding: 24px 20px; }
     }
 
+    /* Monochrome, editorial visual direction */
+    :root {
+      --bg: #090a0b;
+      --bg-secondary: #101112;
+      --card: #111213;
+      --border: rgba(255,255,255,.11);
+      --text: #f1f1ef;
+      --muted: #929394;
+      --purple: #c7c7c4;
+      --blue: #a9aaab;
+      --gradient: linear-gradient(110deg, #e1e1de, #9b9c9d);
+    }
+    body { background: #090a0b; color: #f1f1ef; }
+    body::before, body::after { display: none !important; }
+    .header { background: rgba(9,10,11,.94); border-bottom-color: rgba(255,255,255,.1); }
+    .logo-icon { color: #111; background: #e5e5e2; box-shadow: none; }
+    .logo-light, .nav a, .footer { color: #999a9b; }
+    .nav a:hover, .footer a:hover { color: #fff; }
+    .nav-button { border-color: rgba(255,255,255,.2) !important; color: #ededeb !important; }
+    .eyebrow, .service-number, .price-label, .preview-label { color: #a7a8a9; }
+    .hero h1 span, .section-heading h2 span, .contact-box h2 span {
+      color: #f1f1ef; background: none; -webkit-text-fill-color: currentColor;
+    }
+    .hero h1 { max-width: 680px; font-weight: 600; letter-spacing: -.055em; }
+    .hero-description, .section-heading p, .service-card p, .price-card p,
+    .contact-box p, .nexora-process-card p, .nexora-benefits-grid p { color: #a0a1a2; }
+    .button.primary { color: #111; background: #e4e4e1; border: 1px solid #e4e4e1; }
+    .button.primary:hover { color: #fff; background: #272829; border-color: #525354; }
+    .button.secondary { color: #e5e5e3; border-color: rgba(255,255,255,.2); }
+    .button.secondary:hover { border-color: rgba(255,255,255,.55); background: #171819; }
+    .hero-visual { transform: none !important; animation: none; }
+    .hero-visual::after { display: none; }
+    .hero-visual .visual-card {
+      border-color: rgba(255,255,255,.16);
+      border-radius: 16px;
+      background: #101112;
+      box-shadow: 0 28px 70px rgba(0,0,0,.36);
+    }
+    .visual-top, .visual-bottom { color: #a2a3a4; }
+    .visual-top .live { color: #d1d1ce; }
+    .visual-center { perspective: none; }
+    .hero-visual .orbit, .hero-visual .core::before, .hero-visual .core::after,
+    .hero-visual .core-sheen, .hero-visual .core-orbit, .nexora-particles,
+    .floating-tag, .cursor-glow { display: none !important; }
+    .hero-visual .core {
+      width: 154px; height: 154px; display: grid; place-items: center;
+      border: 1px solid rgba(255,255,255,.2); border-radius: 50%;
+      background: #171819; box-shadow: none; animation: none; transform: none;
+      color: #f0f0ed; font: 500 76px/1 "Space Grotesk", sans-serif;
+    }
+    .core-letter {
+      color: #f0f0ed; font: 500 76px/1 "Space Grotesk", sans-serif;
+      text-shadow: none; transform: none;
+    }
+    .stats { border-color: rgba(255,255,255,.12); }
+    .stats strong { color: #ededeb; }
+    .stats span { color: #a4a5a6; }
+    .service-grid { gap: 12px; border: 0; }
+    .service-card {
+      min-height: 246px; padding: 25px 23px;
+      border: 1px solid rgba(255,255,255,.11); border-radius: 12px;
+      background: #101112; transition: transform .28s ease, border-color .28s ease, background .28s ease;
+    }
+    .service-card::before { display: none; }
+    .service-card:hover {
+      transform: translateY(-4px); border-color: rgba(255,255,255,.32);
+      background: #151617; box-shadow: none;
+    }
+    .service-icon {
+      width: 34px; height: 34px; display: inline-grid; place-items: center;
+      margin: 0 9px 0 0; border: 1px solid rgba(255,255,255,.17);
+      border-radius: 9px; background: #191a1b; color: #e5e5e3; vertical-align: middle;
+    }
+    .service-number { color: #a2a3a4; }
+    .service-card a, .nexora-project-cta span, .nexora-telegram-link span { color: #dededb; }
+    .service-card a::after { content: "↗"; transition: transform .2s ease; }
+    .service-card a:hover::after { transform: translate(2px,-2px); }
+    .nexora-process-grid { gap: 12px; border: 0; }
+    .nexora-process-card {
+      padding: 22px; border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; background: #101112;
+    }
+    .nexora-process-card > span {
+      width: 34px; height: 34px; display: grid; place-items: center;
+      margin-bottom: 20px; border: 1px solid rgba(255,255,255,.17);
+      border-radius: 9px; color: #e6e6e3; background: #191a1b; letter-spacing: 0;
+    }
+    .nexora-benefits-grid { grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; border: 0; }
+    .nexora-benefits-grid article {
+      min-height: 130px; padding: 21px; border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; background: #101112;
+    }
+    .nexora-benefits-grid article > span { color: #dededb; }
+    .project-grid { gap: 14px; }
+    .project-card, .nexora-project-card {
+      border-color: rgba(255,255,255,.12); border-radius: 14px;
+      background: #101112; box-shadow: none;
+    }
+    .project-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.32); box-shadow: none; }
+    .project-preview { filter: grayscale(1); }
+    .nexora-project-link .project-preview { min-height: 285px; }
+    .nexora-project-card.project-large .project-preview { min-height: 585px; }
+    .project-info { padding-inline: 20px; }
+    .nexora-project-cta, .nexora-telegram-link {
+      border-color: rgba(255,255,255,.16); color: #e8e8e5; background: #171819;
+    }
+    .nexora-project-cta:hover, .nexora-telegram-link:hover {
+      border-color: rgba(255,255,255,.38); background: #202122;
+    }
+    .price-card, .price-card.featured {
+      border-color: rgba(255,255,255,.12); border-radius: 13px;
+      background: #101112; box-shadow: none;
+    }
+    .price-card:hover { transform: translateY(-4px); border-color: rgba(255,255,255,.35); }
+    .price-card.featured { border-color: rgba(255,255,255,.35); background: #151617; }
+    .popular { color: #f0f0ed; background: #292a2b; }
+    .price { color: #f1f1ef; }
+    .contact-box {
+      border: 1px solid rgba(255,255,255,.13); border-radius: 15px;
+      background: #101112;
+    }
+    .form-group label { color: #d6d6d3; }
+    .form-group input, .form-group select, .form-group textarea {
+      border-color: rgba(255,255,255,.14); border-radius: 9px; background: #0b0c0d;
+    }
+    .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+      border-color: rgba(255,255,255,.5); background: #111213;
+    }
+    .form-group select option { color: #eee; background: #111213; }
+    .form-message { color: #d5d5d2; }
+    .contact-box::before, .contact-box::after { display: none; }
+    .footer { border-top-color: rgba(255,255,255,.1); }
+    .reveal { transition: opacity .55s ease, transform .55s cubic-bezier(.2,.7,.2,1); }
+    .reveal:not(.visible) { transform: translateY(18px); }
+    .project-card, .service-card, .price-card, .nexora-process-card, .nexora-benefits-grid article {
+      transition-timing-function: cubic-bezier(.2,.7,.2,1);
+    }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline-color: #e4e4e1;
+    }
+    @media (max-width: 900px) {
+      .nexora-benefits-grid { grid-template-columns: 1fr; }
+      .nexora-benefits-grid article { min-height: 0; }
+    }
+    @media (max-width: 600px) {
+      .hero { min-height: 0; }
+      .service-card { min-height: 0; padding: 22px 18px; }
+      .nexora-process-grid { gap: 0; }
+      .nexora-process-card { padding: 19px 2px; border-width: 0 0 1px; border-radius: 0; background: transparent; }
+      .nexora-project-link .project-preview,
+      .nexora-project-card.project-large .project-preview { min-height: 255px; }
+      .project-info { padding-inline: 15px; }
+      .price-card { padding: 24px 20px; }
+      .reveal { transition-duration: .4s; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+    }
+
   </style>
 
 </head>
