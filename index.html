@@ -978,6 +978,21 @@
     }
 
   </style>
+  <style>
+    .nexora-monolith-card { grid-column: 1 / -1; }
+    .nexora-monolith-preview {
+      position: relative; min-height: 340px; display: flex; align-items: center; overflow: hidden;
+      padding: clamp(28px,5vw,62px); background: #292820 url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=1800&q=82") center 54% / cover;
+      color: #fff;
+    }
+    .nexora-monolith-preview::before { content: ""; position:absolute; inset:0; background:linear-gradient(90deg,rgba(20,20,18,.78),rgba(20,20,18,.28) 68%,rgba(20,20,18,.04)); }
+    .nexora-monolith-preview .preview-label { position:absolute; z-index:1; top:22px; left:clamp(28px,5vw,62px); color:#fff; }
+    .nexora-monolith-copy { position:relative; z-index:1; display:flex; flex-direction:column; gap:15px; }
+    .nexora-monolith-copy span,.nexora-monolith-copy small { color:#e2d7c5; font-size:9px; letter-spacing:.2em; }
+    .nexora-monolith-copy strong { font:400 clamp(36px,6vw,68px)/.98 Georgia,"Times New Roman",serif; letter-spacing:-.04em; }
+    .nexora-monolith-mark { position:absolute; z-index:1; right:8%; color:#ffffff20; font:400 clamp(180px,30vw,360px)/1 Georgia,serif; }
+    @media(max-width:600px) { .nexora-monolith-card { grid-column:auto; } .nexora-monolith-preview { min-height:255px; } .nexora-monolith-mark { right:2%; font-size:180px; } }
+  </style>
 
 </head>
 <body>
@@ -1224,6 +1239,24 @@
           <details class="project-case">
             <summary>О концепции</summary>
             <div><p>Сайт для студии интерьеров с акцентом на портфолио и атмосферу</p><p>Спокойная типографика и крупные изображения помогают показать проекты</p><small>Это визуальная концепция, не клиентский заказ</small></div>
+          </details>
+        </article>
+        <article class="project-card nexora-project-card nexora-monolith-card">
+          <a class="nexora-project-link" href="/projects/monolith-interiors" target="_blank" rel="noopener" aria-label="Открыть демонстрационный сайт MONOLITH INTERIORS">
+            <div class="project-preview nexora-monolith-preview">
+              <span class="preview-label">MONOLITH / INTERIORS</span>
+              <div class="nexora-monolith-copy"><span>РЕМОНТ · ДИЗАЙН · РЕАЛИЗАЦИЯ</span><strong>Пространство,<br>которое остаётся.</strong><small>КОНЦЕПТУАЛЬНЫЙ ПРОЕКТ</small></div>
+              <span class="nexora-monolith-mark" aria-hidden="true">M</span>
+            </div>
+          </a>
+          <div class="project-info nexora-project-info">
+            <div><h3>MONOLITH INTERIORS</h3><p>Концепт премиальной студии ремонта квартир и дизайна интерьеров</p></div>
+            <span>04</span>
+          </div>
+          <a class="nexora-project-cta" href="/projects/monolith-interiors" target="_blank" rel="noopener">Открыть концепт <span>↗</span></a>
+          <details class="project-case">
+            <summary>О концепции</summary>
+            <div><p>Самостоятельный сайт студии полного цикла: от идеи и дизайн-проекта до ремонта и авторского надзора.</p><p>Портфолио на странице обозначено как концептуальная визуализация, без вымышленных отзывов и достижений.</p><small>Демонстрационный бренд NEXORA STUDIO</small></div>
           </details>
         </article>
       </div>

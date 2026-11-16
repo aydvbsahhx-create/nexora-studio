@@ -87,6 +87,14 @@ def business_website():
     )
 
 
+# Project: MONOLITH INTERIORS
+@app.route("/projects/monolith-interiors")
+def monolith_interiors():
+    return send_file(
+        BASE_DIR / "projects" / "monolith-interiors" / "index.html"
+    )
+
+
 # Отправка заявки в Telegram
 @app.route("/api/order", methods=["POST"])
 def create_order():
