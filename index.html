@@ -889,6 +889,94 @@
     .brief-select:focus-visible, .brief-features input:focus-visible { outline: 2px solid #e4e4e1; outline-offset: 3px; }
     @media (max-width: 700px) { .brief-panel { grid-template-columns: 1fr; gap: 20px; } }
 
+    /* NEXORA art direction: luminous violet, layered surfaces and a living emblem */
+    :root { --accent: #a78bfa; --accent-bright: #c4b5fd; --accent-soft: rgba(167,139,250,.14); }
+    body { background: #08090d; }
+    body::before {
+      display: block; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+      background: radial-gradient(ellipse at 82% 9%, rgba(109,76,190,.16), transparent 34%),
+        radial-gradient(ellipse at 8% 44%, rgba(71,91,155,.09), transparent 32%),
+        linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px);
+      background-size: auto, auto, 52px 52px, 52px 52px;
+      mask-image: linear-gradient(to bottom, black, transparent 78%);
+    }
+    .header { background: rgba(8,9,13,.78); border-bottom-color: rgba(255,255,255,.075); }
+    .logo-icon {
+      color: #fff; background: linear-gradient(145deg,#c4b5fd,#7255cf 58%,#4d3a9c);
+      box-shadow: 0 5px 20px rgba(137,105,226,.32), inset 0 1px rgba(255,255,255,.55);
+    }
+    .nav a:hover { color: var(--accent-bright); }
+    .nav a::after { background: linear-gradient(90deg,#9c7ce8,#76c8e8); }
+    .hero { position: relative; }
+    .hero h1 span, .section-heading h2 span, .contact-box h2 span {
+      background: linear-gradient(105deg,#eee9ff 5%,#ae93f5 48%,#9bd9ee 100%);
+      color: transparent; -webkit-background-clip: text; background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero .eyebrow { color: #c2b6e3; }
+    .hero .eyebrow .status-dot { display: inline-block; background: #a78bfa; box-shadow: 0 0 13px rgba(167,139,250,.8); animation: statusBreathe 2.2s ease-in-out infinite; }
+    .studio-claim { color: #d0c5eb; }
+    .button.primary { color: white; border-color: #9a7be5; background: linear-gradient(120deg,#8063cc,#6350ae); box-shadow: 0 8px 26px rgba(103,77,174,.22), inset 0 1px rgba(255,255,255,.2); }
+    .button.primary:hover { color: white; background: linear-gradient(120deg,#9879e3,#7560c6); box-shadow: 0 12px 34px rgba(125,93,210,.34); }
+    .button.secondary:hover { border-color: rgba(185,161,255,.7); background: rgba(167,139,250,.08); }
+    .hero-visual { overflow: visible; }
+    .hero-visual::after {
+      display: block; content: ""; position: absolute; z-index: 0; width: 64%; aspect-ratio: 1;
+      border-radius: 50%; background: rgba(114,83,203,.22); filter: blur(76px); pointer-events: none;
+      animation: haloBreathe 5.5s ease-in-out infinite alternate;
+    }
+    .hero-visual .visual-card {
+      z-index: 1; overflow: hidden; border-color: rgba(207,192,255,.18);
+      background: radial-gradient(ellipse at 50% 46%,rgba(108,81,178,.18),transparent 47%),
+        linear-gradient(145deg,rgba(25,23,37,.97),rgba(12,13,19,.98) 68%);
+      box-shadow: 0 34px 90px rgba(0,0,0,.48), 0 0 70px rgba(113,85,193,.12), inset 0 1px rgba(255,255,255,.09);
+      backdrop-filter: blur(12px);
+    }
+    .hero-visual .visual-card::after { border-color: rgba(196,181,253,.08); }
+    .visual-top .live { color: #b9f2d0; border-color: rgba(104,223,157,.2); background: rgba(74,194,126,.07); }
+    .visual-center { background: radial-gradient(ellipse,rgba(167,139,250,.13),transparent 54%); animation: emblemFloat 5.4s ease-in-out infinite; }
+    .hero-visual .orbit { display: block !important; z-index: 1; border-color: rgba(189,165,255,.3); filter: drop-shadow(0 0 7px rgba(167,139,250,.25)); }
+    .hero-visual .orbit-one { width: 218px; height: 218px; animation-duration: 18s; }
+    .hero-visual .orbit-two { width: 268px; height: 156px; border-color: rgba(122,207,239,.24); animation-duration: 23s; }
+    .hero-visual .orbit-one::before { width: 7px; height: 7px; background: #d8caff; box-shadow: 0 0 16px #a78bfa; }
+    .hero-visual .orbit-two::before { width: 6px; height: 6px; background: #9de5f4; box-shadow: 0 0 16px #76c8e8; }
+    .hero-visual .core {
+      z-index: 4; border: 1px solid rgba(239,230,255,.76); border-radius: 35px;
+      background: linear-gradient(145deg,#c8b9f3 0%,#806bc2 18%,#453765 48%,#282238 72%,#75639f 100%);
+      box-shadow: 0 30px 52px rgba(0,0,0,.58), 0 10px 0 #272130, 0 13px 0 #111116,
+        0 0 40px rgba(149,119,229,.38), inset 1px 1px 1px rgba(255,255,255,.82),
+        inset -11px -13px 24px rgba(13,10,23,.6);
+      transition: transform .18s cubic-bezier(.2,.75,.25,1), box-shadow .3s ease, filter .3s ease;
+      animation: emblemGlow 4.8s ease-in-out infinite;
+    }
+    .hero-visual .core:hover { filter: brightness(1.12); box-shadow: 0 35px 56px rgba(0,0,0,.55),0 10px 0 #272130,0 13px 0 #111116,0 0 58px rgba(167,139,250,.56),inset 1px 1px 1px rgba(255,255,255,.9),inset -11px -13px 24px rgba(13,10,23,.55); }
+    .hero-visual .core::before { border-color: rgba(255,255,255,.34); background: linear-gradient(145deg,rgba(255,255,255,.19),transparent 38% 65%,rgba(12,8,25,.22)); }
+    .hero-visual .core::after { background: radial-gradient(circle at var(--emblem-light-x,50%) var(--emblem-light-y,18%),rgba(255,255,255,.43),transparent 56%); }
+    .visual-bottom { border-color: rgba(196,181,253,.14); }
+    .floating-tag { display: block !important; border-color: rgba(196,181,253,.2); background: rgba(19,18,29,.86); color: #e3d9ff; box-shadow: 0 12px 34px rgba(0,0,0,.28) !important; backdrop-filter: blur(14px); }
+    .tag-one { animation: tagFloat 5s ease-in-out infinite; }
+    .tag-two { animation: tagFloat 6s ease-in-out infinite reverse; }
+    .section-heading .eyebrow::before { background: linear-gradient(90deg,#a78bfa,transparent); }
+    .stats strong, .service-icon, .service-number, .nexora-process-card > span, .nexora-benefits-grid article > span { color: #bba7f3; }
+    .service-card:hover, .nexora-process-card:hover, .nexora-benefits-grid article:hover { border-color: rgba(167,139,250,.42); }
+    .project-card:hover, .price-card:hover { border-color: rgba(167,139,250,.5); }
+    .nexora-project-cta, .nexora-telegram-link { border-color: rgba(167,139,250,.25); background: rgba(167,139,250,.07); }
+    .price-card.featured { border-color: rgba(167,139,250,.48); box-shadow: 0 16px 50px rgba(81,61,134,.12); }
+    .contact-box { background: radial-gradient(ellipse at 100% 0,rgba(113,84,185,.12),transparent 38%),#101112; border-color: rgba(183,159,246,.2); }
+    .brief-panel { background: linear-gradient(135deg,rgba(167,139,250,.055),transparent 45%),#101112; border-color: rgba(183,159,246,.18); }
+    @keyframes statusBreathe { 50% { opacity: .55; box-shadow: 0 0 5px rgba(167,139,250,.4); } }
+    @keyframes haloBreathe { from { opacity: .55; transform: scale(.88); } to { opacity: .95; transform: scale(1.12); } }
+    @keyframes emblemGlow { 0%,100% { box-shadow: 0 30px 52px rgba(0,0,0,.58),0 10px 0 #272130,0 13px 0 #111116,0 0 34px rgba(149,119,229,.32),inset 1px 1px 1px rgba(255,255,255,.82),inset -11px -13px 24px rgba(13,10,23,.6); } 50% { box-shadow: 0 30px 52px rgba(0,0,0,.58),0 10px 0 #272130,0 13px 0 #111116,0 0 50px rgba(149,119,229,.48),inset 1px 1px 1px rgba(255,255,255,.82),inset -11px -13px 24px rgba(13,10,23,.6); } }
+    @media (max-width: 600px) {
+      .hero-visual .orbit-one { width: 184px; height: 184px; }
+      .hero-visual .orbit-two { width: 224px; height: 132px; }
+      .floating-tag { display: none !important; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-visual::after, .hero-visual .core, .hero-visual .orbit, .hero .eyebrow .status-dot { animation: none !important; }
+    }
+
   </style>
 
 </head>
